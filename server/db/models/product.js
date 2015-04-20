@@ -9,4 +9,4 @@ var schema = new mongoose.Schema({
 
 });
 
-mongoose.model('Order', schema);
+mongoose.model('Product', schema);
