@@ -1,11 +1,13 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-	purchaseDate: Date,
-	totalCost: String,
-	status: String,
-	user:{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
-	products:[{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}]
+	name: String,
+	description: String,
+	imageUrl: String,
+	price: Number,
+	stock:{type: mongoose.Schema.Types.ObjectId, ref: 'Stock'},
+	category:[String],
+	reviews:[{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
 
 });
 
