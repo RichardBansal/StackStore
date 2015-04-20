@@ -9,8 +9,12 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'My Account', state: 'about', auth: true},
-                { label: 'Shopping Cart', state: 'tutorial' }
+                // TODO: auth:false do not work, need to hide for signed in user
+                { label: 'Create Account', state: 'createAccount', auth: false},
+                { label: 'My Account', state: 'account', auth: true},
+                { label: 'Shopping Cart', state: 'cart' },
+                // TODO: for 'admins only - show the dashboard link'
+                { label: 'Admin Dashboard', state: 'admin', auth: true }
             ];
 
             scope.user = null;
