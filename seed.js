@@ -33,12 +33,22 @@ var seedUsers = function () {
 
     var users = [
         {
-            email: 'testing@fsa.com',
-            password: 'password'
+            name: "Bob J.",
+            addressBilling: "55 Hanover",
+            addressShipping: "56 Wall St.",
+            phoneNumber: "555-555-5555",
+            accountType: "user",
+            email: "bob@excite.com",
+            password: "password"
         },
         {
-            email: 'obama@gmail.com',
-            password: 'potus'
+            name: "Anne B.",
+            addressBilling: "506 Broadway",
+            addressShipping: "303 W 16th",
+            phoneNumber: "123-456-7890",
+            accountType: "user",
+            email: "anne@gmail.com",
+            password: "woof"
         }
     ];
 

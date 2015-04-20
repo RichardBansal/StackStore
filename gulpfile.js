@@ -62,15 +62,78 @@ gulp.task('buildCSS', function () {
         .pipe(plumber())
         .pipe(sass())
         .pipe(rename('style.css'))
-        .pipe(gulp.dest('./public'))
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('seedDB', function () {
 
     var users = [
-        { email: 'testing@fsa.com', password: 'testing123' },
-        { email: 'joe@fsa.com', password: 'rainbowkicks' },
-        { email: 'obama@gmail.com', password: 'potus' }
+        {
+            name: "Bob J.",
+            addressBilling: "55 Hanover",
+            addressShipping: "56 Wall St.",
+            phoneNumber: "555-555-5555",
+            accountType: "user",
+            email: "bob@excite.com",
+            password: "password"
+        },
+        {
+            name: "Anne B.",
+            addressBilling: "506 Broadway",
+            addressShipping: "303 W 16th",
+            phoneNumber: "123-456-7890",
+            accountType: "user",
+            email: "anne@gmail.com",
+            password: "woof"
+        }
+    ];    
+
+    var products = [
+        {
+            name: "FSA T",
+            description: "Tshirt with FSA lettering.",
+            price: 2999,
+            category: ["School shirts", "Tshirts"]
+        },
+        {
+            name: "Nimit T",
+            description: "Tshirt rocking an image of Nimit.",
+            price: 3499,
+            category: ["People shirts", "Tshirts"]
+        }
+    ];
+
+    var orders = [
+        {
+            purchaseDate: "2015-04-20",
+            status: "unfullfilled"
+        },
+        {
+            purchaseDate: "2015-04-16",
+            status: "fullfilled"
+        }
+    ];    
+
+    var stocks = [
+        {
+            size: "M",
+            quantity: 10
+        },
+        {
+            size: "L",
+            quantity: 6
+        }
+    ];
+
+    var reviews = [
+        {
+            stars: 5,
+            text: "Best shirt on the friggin' planet!"
+        },
+        {
+            stars: 3,
+            text: "It's ok, but I've had better."
+        }
     ];
 
     var dbConnected = require('./server/db');
@@ -78,6 +141,18 @@ gulp.task('seedDB', function () {
     return dbConnected.then(function () {
         var User = require('mongoose').model('User');
         return User.create(users);
+    }).then(function () {
+        var Product = require('mongoose').model('Product');
+        return Product.create(products);    
+    }).then(function () {
+        var Order = require('mongoose').model('Order');
+        return Order.create(orders);
+    }).then(function () {
+        var Stock = require('mongoose').model('Stock');
+        return Stock.create(stocks);
+    }).then(function () {
+        var Review = require('mongoose').model('Review');
+        return Review.create(reviews);
     }).then(function () {
         process.kill(0);
     }).catch(function (err) {
@@ -96,7 +171,7 @@ gulp.task('buildCSSProduction', function () {
         .pipe(sass())
         .pipe(rename('style.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest('./public'))
+        .pipe(gulp.dest('./public'));
 });
 
 gulp.task('buildJSProduction', function () {
