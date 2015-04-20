@@ -2,7 +2,26 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
-var schema = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
+    name: {
+        type: String
+    },
+    addressBilling: {
+        type: String
+    },
+    addressShipping: {
+        type: String
+    },
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
+    imageUrl: { 
+        type: String 
+    },
+    phoneNumber: {
+        type: String
+    },
+    accountType: {
+        type: String
+    },
     email: {
         type: String
     },
@@ -39,7 +58,7 @@ var encryptPassword = function (plainText, salt) {
     return hash.digest('hex');
 };
 
-schema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
 
     if (this.isModified('password')) {
         this.salt = this.constructor.generateSalt();
@@ -50,11 +69,11 @@ schema.pre('save', function (next) {
 
 });
 
-schema.statics.generateSalt = generateSalt;
-schema.statics.encryptPassword = encryptPassword;
+UserSchema.statics.generateSalt = generateSalt;
+UserSchema.statics.encryptPassword = encryptPassword;
 
-schema.method('correctPassword', function (candidatePassword) {
+UserSchema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
-mongoose.model('User', schema);
+mongoose.model('User', UserSchema);
