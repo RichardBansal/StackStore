@@ -24,6 +24,68 @@ describe('User model', function () {
         expect(User).to.be.a('function');
     });
 
+    describe('Making users', function() {
+        var exampleUser1 = {
+            name: "Scarlett O.",
+            addressBilling: "555 Hanover",
+            addressShipping: "444 Hanover",
+            phoneNumber: "123-456-1234",
+            accountType: "user",
+            email: "scarlett@gwtw.com",
+            password: "illneverbehungryagain"
+        };
+
+        var exampleUser2 = {
+            name: "Rhett B.",
+            addressBilling: "504 Broadway",
+            addressShipping: "777 Hanover",
+            phoneNumber: "123-456-9876",
+            accountType: "user",
+            email: "rhett@gwtw.com",
+            password: "franklymydearidontgiveadamn"  
+        };
+
+        beforeEach('Create the example user', function (done) {
+            User.create(exampleUser1, exampleUser2, function(err, exampleUser1, exampleUser2) {
+                if (err) throw err;
+                else {
+                    //console.log("Example users created.");
+                    done();
+                }
+            });
+        });
+
+        // beforeEach('Create the example user', function (done) {
+        //     new User(exampleUser2).save(done);
+        // });
+
+        afterEach('Clear test database', function (done) {
+            clearDB(done);
+        });
+
+        it('can save a new user', function (done) {
+            new User({name: "Scarlet"}).save(done);
+        });
+
+
+        it('can save a new user with various properties', function(done) {
+            User.findOne({name: "Scarlett O."}, function(err, user) {
+                expect(err).to.not.exist;
+                expect(user.email).to.equal('scarlett@gwtw.com');
+                done();
+            });
+        });
+
+        it('can save two or more users, and they can be listed', function(done) {
+            User.find({}, function(err, users) {
+                expect(err).to.not.exist;
+                expect(users).to.have.length(2);
+                done();
+            });
+        });
+    });
+
+
     describe('password encryption', function () {
 
         describe('generateSalt method', function () {
