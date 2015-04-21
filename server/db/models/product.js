@@ -5,7 +5,7 @@ var schema = new mongoose.Schema({
 	description: String,
 	imageUrl: String,
 	price: Number,
-	stock: {type: mongoose.Schema.Types.ObjectId, ref: 'Stock'},
+	stock: [{type: mongoose.Schema.Types.ObjectId, ref: 'Stock'}],
 	category:[String],
 	reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
 
