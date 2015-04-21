@@ -156,10 +156,13 @@ gulp.task('seedDB', function () {
     }).then(function() {
         return q.all([
             User.find().exec(), 
-            Order.find().exec()]);
+            Order.find().exec(),
+            Product.find().exec()
+            ]);
     }).then(function (userAndOrderData) {
+        console.log("*******",userAndOrderData);
         var orders = userAndOrderData[1];
-
+        var products=userAndOrderData[2];
         return q.all([
             User.findOne({name: "Anne B."}).exec().then(function(user) {
                 user.orders.push(orders[0]);
@@ -170,6 +173,16 @@ gulp.task('seedDB', function () {
                 user.orders.push(orders[1]);
                 user.save();
                 return user;
+            }),
+            Order.findOne({purchaseDate: "2015-04-20"}).exec().then(function(order) {
+                order.products.push({quantity: 1, product:products[0]});
+                order.save();
+                return order;
+            }),
+            Order.findOne({purchaseDate: "2015-04-16"}).exec().then(function(order) {
+                order.products.push({quantity: 2, product:products[1]});
+                order.save();
+                return order;
             })
         ]);
     }).then(function (userData) {
