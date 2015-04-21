@@ -1,0 +1,6 @@
+<div ng-repeat='shirt in shirts'>
+	<h1>{{shirt.name}}</h1>
+	<h1>{{shirt.description}}</h1>
+	<h1>{{shirt.price}}</h1>
+	<h1 ng-repeat='category in shirt.category'>{{category}}</h1>
+</div>
