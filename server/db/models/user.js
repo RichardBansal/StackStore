@@ -2,6 +2,11 @@
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
+function UserEmailValidator(email){
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+
 var UserSchema = new mongoose.Schema({
     name: {
         type: String
@@ -23,7 +28,10 @@ var UserSchema = new mongoose.Schema({
         type: String
     },
     email: {
-        type: String
+        type: String,
+        validate: UserEmailValidator,
+        required: true,
+        unique: true
     },
     password: {
         type: String
