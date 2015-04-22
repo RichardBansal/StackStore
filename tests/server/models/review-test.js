@@ -142,6 +142,15 @@ describe('Review model', function () {
                     done();
                 }); 
             });
+
+            it('can access data about the user', function (done) {
+               Review.findOne({stars: 5}, function(err, review) {
+                    User.findOne({_id: review.user}, function(err, user) {
+                        expect(user.name).to.equal("Brad H.");
+                        done();
+                    });
+                }); 
+            });
         });
     });
     
