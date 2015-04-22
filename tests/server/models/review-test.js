@@ -67,11 +67,6 @@ describe('Review model', function () {
                     User.findOne({name: "Brad H."}, function(err, user) {
                         exampleReview1.user = user._id;
                         
-                        // console.log("REVIEW  TTTTTTTTTTTTTTTTT");
-                        // console.log(exampleReview1.user);
-                        // console.log("USER  TTTTTTTTTTTTTTTTT");
-                        // console.log(user);
-                        
                         exampleReview1.save(function(err){
                             if (err) throw err;
                             done();
@@ -80,14 +75,6 @@ describe('Review model', function () {
                 }
             });
         });        
-
-        // beforeEach('Show review with user id', function (done) {
-        //     Review.find({}, function(err, review) {
-        //         console.log(review);
-        //         done();
-        //     });
-        // });
-
 
         afterEach('Clear test database', function (done) {
             Review.find({}, function(err, reviews) {
