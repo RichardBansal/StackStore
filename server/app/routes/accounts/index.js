@@ -6,16 +6,17 @@ var Order = require('mongoose').model('Order');
 router.post('/create', function(req, res, next){
 	User.create(req.body).then(fulfilled, rejected);
 	function fulfilled(user){
-		console.log(user);
+		res.sendStatus(200);
 	}
 
 	function rejected(error){
-		console.log(error);
+		res.sendStatus(400);
+
 	}
 });
 
 router.get('/details', function(req,res,next){
-	console.log(req.session);
+	console.log(req.body);
 
 	var user_id = req.session.passport.user;
 	// console.log(user_id);
@@ -41,10 +42,12 @@ router.get('/details', function(req,res,next){
 		//TODO: Only sending back email, do not send back the password salt
 		// console.log(user);
 		console.log({user:foundUser.email, orders: foundOrders});
+		res.sendStatus(200);
 		//TODO: Also grab orders based on user id and send this back
 	}
 	function rejected(err){
 		console.log(err);
+		res.sendStatus(400);
 	}
 });
 
