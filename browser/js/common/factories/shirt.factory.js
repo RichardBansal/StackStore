@@ -13,8 +13,8 @@ app.factory('ShirtFactory', function($http){
 			return $http.get('/api/products/'+id).then(fulfilled,rejected);
 
 			function fulfilled(shirt){
-				console.log(shirt);
-				// return shirt;
+				// console.log('shirt',shirt);
+				return shirt;
 			}
 
 			function rejected(error){

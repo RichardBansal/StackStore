@@ -15,4 +15,19 @@ router.get("/",function(req,res,next){
 	}
 });
 
+
+router.get("/:id",function(req,res,next){
+	// console.log(req.params.id);
+	Product.findOne({"_id":req.params.id}).exec()
+		.then(fulfilled, rejected);
+
+	function fulfilled(product){
+		res.send(product);
+	}
+
+	function rejected(error){
+		next(error);
+	}
+});
+
 module.exports = router;
