@@ -91,7 +91,7 @@ describe('Order model', function () {
     describe('Testing orders with users, products defined', function() {
         var count = 0;
 
-        xit('order belongs to user', function(done){
+        it('order belongs to user', function(done){
             Orders.find({}).exec().then(fulfilled,rejected);
 
             function fulfilled(orders){
@@ -138,18 +138,18 @@ describe('Order model', function () {
             }
         });
 
-        xit('order must contain line items that capture price', function(done){
-            //find all 
+        it('order must contain line items that capture price', function(done){
             Orders.find({}).exec().then(fulfilled, rejected);
 
             function fulfilled(orders){
-                // console.log(orders);
                 function productsPrice(){
-                    return orders.all(function(order){
-                        return (order.products.price !== undefined)
+                    //assuming you only have one product per order (for the tests currently)
+                    return orders.every(function(order){
+                        return (order.products[0].price !== undefined);
                     });
                 }
-                expect(productsPrice).to.equal(true);
+                expect(productsPrice()).to.equal(true);
+                done();
             }
 
             function rejected(error){
@@ -161,24 +161,11 @@ describe('Order model', function () {
             Orders.findOne().exec().then(fulfilled, rejected);
 
             function fulfilled(order){
-                // console.log(order.products);                
-            //     // Products.findOne({_id:product._id}, function(data){console.log(data)});
-            //     // Products.update()
-            //     // Model.update({product._id}, update, options, callback);
                 product = order.products[0];
-                // console.log(product.product);
-            //     console.log('total',order.determineTotal());
-            //     // Products.findById(product._id,function(err,data){console.log('data',data)});
-            //     // done();
-
-                // Products.findOne({_id:product._id}).exec().then(productFound);
                 Products.findOne({"_id":product.product}).exec()
                     .then(productFound);
-                    // .then(updatedProduct);
 
                 function productFound(product){
-                    // console.log(product);
-                    // done();
                     product.price = 9990;
                     return product.save(function(err,data){
                         expect(order.determineTotal()).to.not.equal(product.price);
@@ -189,8 +176,6 @@ describe('Order model', function () {
                 function updatedProduct(product){
                     console.log(order.determineTotal());
                     console.log(product.price);
-                    // expect(order.determineTotal).to.not.equal(product.price)
-                    // console.log('updated',product);
                     done();
                 }
             }
