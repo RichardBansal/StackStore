@@ -20,7 +20,10 @@ describe('Product Routes', function(){
 			            price: 2999,
 			            category: ["School shirts", "Tshirts"]
 				      };
-			Products.create(product, done);
+			Products.create(product, function(err,createdProduct){
+				product = createdProduct.toJSON();
+				done();
+			});
 		});
 
 		it("/api/products/ should return a 200 response ", function(done){
@@ -33,14 +36,16 @@ describe('Product Routes', function(){
 			
 			var isCorrectProduct = function(res){
 				// res.body.should.have.property(product);
-				// console.log('res.body', res.body);
+				console.log('res.body', res.body);
+				// console.log('product', product);
 				// res.body[0].name.should.be("FSA T");
-				return res.body[0].name === 'FSA T';
+				// return res.body[0].name === 'FSA T';
+				return res.body[0].name;
 			};
 
 			agent
 				.get('/api/products/')
-				.expect(isCorrectProduct === true)
+				.expect([product])
 				.expect(200,done)
 		});
 		
