@@ -16,6 +16,14 @@ var OrderSchema = new mongoose.Schema({
 				required: true}
 });
 
+OrderSchema.methods.determineTotal = function(){
+	var sum = 0;
+	this.products.forEach(function(product){
+		sum += product.price;
+	});
+	return sum;
+};
+
 mongoose.model('Order', OrderSchema);
 
 // OrderSchema.methods.

@@ -3,7 +3,7 @@
 //TODO: You need todix this for future testing (especially before you merge the the branch to development - test against development before hand)
 
 //NOTES: connection, seed, tests
-console.log('here');
+// console.log('here');
 var dbURI = 'mongodb://localhost:27017/testingOrdersDB';
 // var clearDB = require('mocha-mongoose')(dbURI);
 
@@ -91,7 +91,7 @@ describe('Order model', function () {
     describe('Testing orders with users, products defined', function() {
         var count = 0;
 
-        it('order belongs to user', function(done){
+        xit('order belongs to user', function(done){
             Orders.find({}).exec().then(fulfilled,rejected);
 
             function fulfilled(orders){
@@ -101,7 +101,7 @@ describe('Order model', function () {
 
                     orders.forEach(function(order){
                         orderArrPromises.push(findUser(order._id));
-                    });  
+                    });
 
                     return orderArrPromises;
                 }
@@ -138,7 +138,7 @@ describe('Order model', function () {
             }
         });
 
-        it('order must contain line items that capture price', function(){
+        xit('order must contain line items that capture price', function(done){
             //find all 
             Orders.find({}).exec().then(fulfilled, rejected);
 
@@ -149,20 +149,55 @@ describe('Order model', function () {
                         return (order.products.price !== undefined)
                     });
                 }
-
                 expect(productsPrice).to.equal(true);
             }
 
             function rejected(error){
                 console.log(error);
             }
-
         });
 
-        xit('the order shall keep the current price, and not capture future price changes', function(){
-            //create an ord
-            //store the prices
-            //
+        it('the order shall keep the current price, and not capture future price changes', function(done){
+            Orders.findOne().exec().then(fulfilled, rejected);
+
+            function fulfilled(order){
+                // console.log(order.products);                
+            //     // Products.findOne({_id:product._id}, function(data){console.log(data)});
+            //     // Products.update()
+            //     // Model.update({product._id}, update, options, callback);
+                product = order.products[0];
+                // console.log(product.product);
+            //     console.log('total',order.determineTotal());
+            //     // Products.findById(product._id,function(err,data){console.log('data',data)});
+            //     // done();
+
+                // Products.findOne({_id:product._id}).exec().then(productFound);
+                Products.findOne({"_id":product.product}).exec()
+                    .then(productFound);
+                    // .then(updatedProduct);
+
+                function productFound(product){
+                    // console.log(product);
+                    // done();
+                    product.price = 9990;
+                    return product.save(function(err,data){
+                        expect(order.determineTotal()).to.not.equal(product.price);
+                        done();
+                    });
+                }
+
+                function updatedProduct(product){
+                    console.log(order.determineTotal());
+                    console.log(product.price);
+                    // expect(order.determineTotal).to.not.equal(product.price)
+                    // console.log('updated',product);
+                    done();
+                }
+            }
+
+            function rejected(error){
+                console.log(error);
+            }
         });
     });
 });
