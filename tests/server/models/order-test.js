@@ -79,7 +79,7 @@ describe("Order model", function () {
             });
         });
 
-        xit("can save two or more orders, and they can be listed", function(done) {
+        it("can save two or more orders, and they can be listed", function(done) {
             Orders.find({}, function(err, orders) {
                 expect(err).to.not.exist;
                 expect(orders).to.have.length(2);
@@ -141,7 +141,7 @@ describe("Order model", function () {
                     .then(foundUsers,rejected)
 
                 function foundUsers(users){
-                    console.log(users.length,orders.length);
+                    // console.log(users.length,orders.length);
                     // if(users.length = orders.length)
                     expect(users.length).to.equal(orders.length);
                     done();
