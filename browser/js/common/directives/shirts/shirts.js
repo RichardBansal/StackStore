@@ -7,6 +7,10 @@ app.directive('shirts', function(ShirtFactory){
 
             function fulfilled(products){
 				scope.shirts = products;
+                ShirtFactory
+                ShirtFactory.shirts = {
+                    products
+                };
 			}
 
 			function rejected(error){
