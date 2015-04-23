@@ -3,6 +3,6 @@
 	<h1>Name: {{shirt.name}}</h1>
 	<h1>Description: {{shirt.description}}</h1>
 	<h1>Price: {{shirt.price}}</h1>
-	<h1>Categories:</h1><h1 ng-repeat='category in shirt.category'>{{category}}</h1>
+	<h1>Categories:</h1><h1 ng-repeat='category in shirt.category' ng-click='getShirts(category)'>{{category}}</h1>
 	<br>
 </div>

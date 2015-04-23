@@ -3,7 +3,8 @@ var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 
 router.get('/',function(req,res,next){
-	Product.find({}).exec()
+	var modelParams = req.query.category ? {category: req.query.category} : {};
+	Product.find(modelParams).exec()
 		.then(fulfilled, rejected);
 
 	function fulfilled(products){
