@@ -7,8 +7,9 @@ app.controller('ShirtController',function($scope, $stateParams, ShirtFactory){
 	ShirtFactory.getShirt.call(ShirtFactory.shirts,$stateParams.id).then(fulfilled,rejected)
 
 	function fulfilled(shirt){
-		// console.log(shirt);
-		$scope.shirt = shirt.data;
+		console.log('controller',shirt);
+		$scope.shirt = shirt.data.product;
+		$scope.reviews = shirt.data.reviews;
 	}
 
 	function rejected(error){

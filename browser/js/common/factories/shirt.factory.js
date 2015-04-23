@@ -13,7 +13,7 @@ app.factory('ShirtFactory', function($http){
 			return $http.get('/api/products/'+id).then(fulfilled,rejected);
 
 			function fulfilled(shirt){
-				// console.log('shirt',shirt);
+				// console.log('shirt+reviews',shirt);
 				return shirt;
 			}
 
