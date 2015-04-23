@@ -95,15 +95,11 @@ describe('Order model', function () {
             Orders.find({}).exec().then(fulfilled,rejected);
 
             function fulfilled(orders){
-                // console.log(orders);
-                // done();
-                
 
                 function produceOrders(){
                     orderArrPromises = []
 
                     orders.forEach(function(order){
-                        // orderIdArr.push(order._id);
                         orderArrPromises.push(findUser(order._id));
                     });  
 
@@ -127,37 +123,14 @@ describe('Order model', function () {
                     .then(foundUsers,rejected)
 
                 function foundUsers(users){
-                    // console.log("blob", users);
-                    //user exists, test passes
-                    // count++; //TODO:
-                    // if(count === 2){
-                    //     expect(count).to.equal(2);
                     if(users.length = orders.length)
                     expect(users.length).to.equal(orders.length);
                     done();
-                    // }
                 };
 
                 function rejected(error){
                    console.log('error',error);
                 }
-
-
-                // orders.forEach(function(order){
-                //     console.log(order._id);
-                //     Users.findOne(
-                //         {
-                //             orders : {
-                //                 $elemMatch : {
-                //                     $eq: order._id
-                //                 }
-                //             }
-                //             // orders: { _id: order._id }
-
-                //             // :{$in: order._id}
-                //         }
-                //         ).exec().then(foundUser, rejected);
-                // });
             }
 
             function rejected(error){
@@ -165,8 +138,25 @@ describe('Order model', function () {
             }
         });
 
-        xit('order must contain line items that capture price', function(){
+        it('order must contain line items that capture price', function(){
             //find all 
+            Orders.find({}).exec().then(fulfilled, rejected);
+
+            function fulfilled(orders){
+                // console.log(orders);
+                function productsPrice(){
+                    return orders.all(function(order){
+                        return (order.products.price !== undefined)
+                    });
+                }
+
+                expect(productsPrice).to.equal(true);
+            }
+
+            function rejected(error){
+                console.log(error);
+            }
+
         });
 
         xit('the order shall keep the current price, and not capture future price changes', function(){
