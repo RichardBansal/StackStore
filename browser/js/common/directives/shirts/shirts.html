@@ -1,6 +1,6 @@
 <div ng-repeat='shirt in shirts'>
-	<h1>{{shirt.name}}</h1>
-	<h1>{{shirt.description}}</h1>
-	<h1>{{shirt.price}}</h1>
-	<h1 ng-repeat='category in shirt.category'>{{category}}</h1>
+	<h1><a ui-sref="shirt({ id: shirt._id })">{{shirt.name}}</a></h1>
+	<h2>{{shirt.description}}</h2>
+	<h2>{{shirt.price}}</h2>
+	<h2 ng-repeat='category in shirt.category'>{{category}}</h2>
 </div>

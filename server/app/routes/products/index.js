@@ -11,7 +11,7 @@ router.get("/",function(req,res,next){
 	}
 
 	function rejected(error){
-		console.log(error);
+		next(error);
 	}
 });
 
