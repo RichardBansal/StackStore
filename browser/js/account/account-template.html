@@ -1,2 +1,25 @@
 Your Email Is:{{user.email}}
 <h1>Email: {{user.email}}</h1>
+<h1>Billing Address: {{user.addressBilling}}</h1>
+<h1>Shipping Address: {{user.addressShipping}}</h1>
+<h1>Name: {{user.name}}</h1>
+<h1>Phone Number: {{user.phoneNumber}}</h1>
+<hr>
+
+<div ng-repeat="order in orders">
+	<h1>Order #: {{order._id}}</h1>
+	<h2>Purchase Date: {{order.purchaseDate | date}} </h2>
+	<h2>Order Status: {{order.status}} </h2>
+	<h2>Total Cost: {{order.totalCost}}</h2>
+	<div ng-repeat="product in order.products">
+	<h2>Items in Order: </h2>
+			<img ng-src = "{{product.product.imageUrl}}"/>
+			<h3>Item Name:{{product.product.name}}</h3>
+			<h3>Quantity:{{product.quantity}}</h3>
+			<h3>Price:{{product.product.price}}</h3>
+
+	</div>
+
+
+
+</div>

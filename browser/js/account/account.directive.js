@@ -12,6 +12,7 @@ app.directive('accountDetails',function($http){
 			function fulfilled(userInfo){
 				console.log(userInfo.data);
 				scope.user = userInfo.data.user;
+				scope.orders = userInfo.data.orders;
 			}
 			function rejected(err){
 				console.log(err);
