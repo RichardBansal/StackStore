@@ -1,13 +1,24 @@
-var dbURI = 'mongodb://localhost:27017/testingDB';
-var clearDB = require('mocha-mongoose')(dbURI);
+//ORDERS: Seeding from gulp seedDBs
+
+//TODO: You need todix this for future testing (especially before you merge the the branch to development - test against development before hand)
+
+//NOTES: connection, seed, tests
+console.log('here');
+var dbURI = 'mongodb://localhost:27017/testingOrdersDB';
+// var clearDB = require('mocha-mongoose')(dbURI);
 
 var sinon = require('sinon');
 var expect = require('chai').expect;
 var mongoose = require('mongoose');
 
 require('../../../server/db/models/order');
+require('../../../server/db/models/product');
+require('../../../server/db/models/user');
 
-var Order = mongoose.model('Order');
+var Orders = mongoose.model('Order');
+var Products = mongoose.model('Product');
+var Users = mongoose.model('User');
+var q = require('q');
 
 describe('Order model', function () {
 
@@ -16,61 +27,152 @@ describe('Order model', function () {
         mongoose.connect(dbURI, done);
     });
 
-    afterEach('Clear test database', function (done) {
-        clearDB(done);
+    // afterEach('Clear test database', function (done) {
+    //     // clearDB(done);
+    //     done();
+    // });
+
+    xit('should exist', function () {
+        expect(Orders).to.be.a('function');
     });
 
-    it('should exist', function () {
-        expect(Order).to.be.a('function');
-    });
+    describe('Making orders only', function() {
+        // var exampleOrder1 = {
+        //     purchaseDate: "2014-05-23",
+        //     status: "unfullfilled",
+        // };
 
-    describe('Making users', function() {
-        var exampleOrder1 = {
-            purchaseDate: "2014-05-23",
-            status: "unfullfilled",
-        };
-
-        var exampleOrder2 = {
-            purchaseDate: "2013-12-25",
-            status: "fullfilled"
-        };
+        // var exampleOrder2 = {
+        //     purchaseDate: "2013-12-25",
+        //     status: "fullfilled"
+        // };
         
 
-        beforeEach('Create the example user', function (done) {
-            Order.create(exampleOrder1, exampleOrder2, function(err, exampleOrder1, exampleOrder2) {
-                if (err) throw err;
-                else {
-                    done();
-                }
-            });
+        // beforeEach('Create the example order', function (done) {
+        //     Orders.create(exampleOrder1, exampleOrder2, function(err, exampleOrder1, exampleOrder2) {
+        //         if (err) throw err;
+        //         else {
+        //             done();
+        //         }
+        //     });
+        // });
+
+        // afterEach('Clear test database', function (done) {
+        //     Orders.find({}, function(err, orders) {
+        //         //console.log(orders);
+        //         // clearDB(done);
+        //         done();
+        //     });
+        // });
+
+        xit('can save a new order', function (done) {
+            new Orders({purchaseDate: "2015-04-15"}).save(done);
         });
 
-        afterEach('Clear test database', function (done) {
-            Order.find({}, function(err, orders) {
-                //console.log(orders);
-                clearDB(done);
-            });
-        });
 
-        it('can save a new order', function (done) {
-            new Order({purchaseDate: "2015-04-15"}).save(done);
-        });
-
-
-        it('can save a new order with various properties', function(done) {
-            Order.findOne({purchaseDate: "2014-05-23"}, function(err, order) {
+        xit('can save a new order with various properties', function(done) {
+            Orders.findOne({purchaseDate: "2014-05-23"}, function(err, order) {
                 expect(err).to.not.exist;
                 expect(order.status).to.equal('unfullfilled');
                 done();
             });
         });
 
-        it('can save two or more orders, and they can be listed', function(done) {
-            Order.find({}, function(err, orders) {
+        xit('can save two or more orders, and they can be listed', function(done) {
+            Orders.find({}, function(err, orders) {
                 expect(err).to.not.exist;
                 expect(orders).to.have.length(2);
                 done();
             });
+        });
+
+    });
+
+    describe('Testing orders with users, products defined', function() {
+        var count = 0;
+
+        it('order belongs to user', function(done){
+            Orders.find({}).exec().then(fulfilled,rejected);
+
+            function fulfilled(orders){
+                // console.log(orders);
+                // done();
+                
+
+                function produceOrders(){
+                    orderArrPromises = []
+
+                    orders.forEach(function(order){
+                        // orderIdArr.push(order._id);
+                        orderArrPromises.push(findUser(order._id));
+                    });  
+
+                    return orderArrPromises;
+                }
+
+                function findUser(orderId){
+                    return Users.findOne(
+                        {
+                            orders : 
+                                {
+                                $elemMatch :
+                                    {
+                                        $eq: orderId
+                                    }
+                                }
+                        }).exec()
+                };
+
+                q.all(produceOrders())
+                    .then(foundUsers,rejected)
+
+                function foundUsers(users){
+                    // console.log("blob", users);
+                    //user exists, test passes
+                    // count++; //TODO:
+                    // if(count === 2){
+                    //     expect(count).to.equal(2);
+                    if(users.length = orders.length)
+                    expect(users.length).to.equal(orders.length);
+                    done();
+                    // }
+                };
+
+                function rejected(error){
+                   console.log('error',error);
+                }
+
+
+                // orders.forEach(function(order){
+                //     console.log(order._id);
+                //     Users.findOne(
+                //         {
+                //             orders : {
+                //                 $elemMatch : {
+                //                     $eq: order._id
+                //                 }
+                //             }
+                //             // orders: { _id: order._id }
+
+                //             // :{$in: order._id}
+                //         }
+                //         ).exec().then(foundUser, rejected);
+                // });
+            }
+
+            function rejected(error){
+                console.log(error);
+            }
+        });
+
+        xit('order must contain line items that capture price', function(){
+            //find all 
+        });
+
+        xit('the order shall keep the current price, and not capture future price changes', function(){
+            //create an ord
+            //store the prices
+            //
         });
     });
 });

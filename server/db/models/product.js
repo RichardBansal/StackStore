@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+// var Order = mongoose.model('Order');
 
 var schema = new mongoose.Schema({
 	name: String,

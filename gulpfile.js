@@ -47,7 +47,9 @@ gulp.task('buildJS', function () {
 });
 
 gulp.task('testServerJS', function () {
-    return gulp.src('./tests/server/**/*.js', {read: false})
+    // return gulp.src('./tests/server/**/*.js', {read: false})
+    //ORDERS:
+    return gulp.src('./tests/server/models/order-test.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
 });
 
@@ -67,6 +69,9 @@ gulp.task('buildCSS', function () {
 });
 
 gulp.task('seedDB', function () {
+
+    //drop db before seeding
+
 
     var users = [
         {
@@ -139,13 +144,18 @@ gulp.task('seedDB', function () {
 
     var dbConnected = require('./server/db');
 
+    // console.log('dbConnected',JSON.stringify(dbConnected));
+    //startDbPromise.then(dbFulfilled,dbRejected);
+
+    //function dbFulfilled()
+
     var User = require('mongoose').model('User');
-    var Product = require('mongoose').model('Product');
     var Order = require('mongoose').model('Order');
+    var Product = require('mongoose').model('Product');
     var Stock = require('mongoose').model('Stock');
     var Review = require('mongoose').model('Review');
     
-
+    //TODO: Add DB drop in here before each seed
     return dbConnected.then(function () {
         return q.all([
             User.create(users),
@@ -185,7 +195,7 @@ gulp.task('seedDB', function () {
                 return order;
             }),
             Order.findOne({purchaseDate: "2015-04-16"}).exec().then(function(order) {
-                order.products.push();
+                order.products.push({quantity: 1, product:products[1]});
                 order.save();
                 return order;
             }),

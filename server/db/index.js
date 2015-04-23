@@ -3,10 +3,14 @@ var Q = require('q');
 var path = require('path');
 var chalk = require('chalk');
 
-var DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
+// var DATABASE_URI = require(path.join(__dirname, '../env')).DATABASE_URI;
+//ORDERS:
+var ORDER_TEST_URI = require(path.join(__dirname, '../env')).ORDER_TEST_URI;
 
 var mongoose = require('mongoose');
-var db = mongoose.connect(DATABASE_URI).connection;
+//ORDERS:
+// var db = mongoose.connect(DATABASE_URI).connection;
+var db = mongoose.connect(ORDER_TEST_URI).connection;
 
 // Require our models -- these should register the model into mongoose
 // so the rest of the application can simply call mongoose.model('User')
