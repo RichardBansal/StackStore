@@ -87,6 +87,9 @@ describe("Order model", function () {
             });
         });
 
+        xit("will reject invalid date");
+        xit("will reject invalid totalCost");
+        xit("will reject invalid status");
     });
 
     describe("Testing orders with users and products defined", function() {
@@ -109,6 +112,7 @@ describe("Order model", function () {
             // done();
         });
 
+         xit("will determineTotal cost correctly");
         it("order belongs to user", function(done){
             Orders.find({}).exec().then(fulfilled,rejected);
 

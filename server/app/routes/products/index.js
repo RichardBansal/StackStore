@@ -2,7 +2,7 @@
 var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 
-router.get("/",function(req,res,next){
+router.get("/*",function(req,res,next){
 	Product.find({}).exec()
 		.then(fulfilled, rejected);
 
