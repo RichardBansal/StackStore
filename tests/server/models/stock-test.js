@@ -24,7 +24,7 @@ describe('Stock model', function () {
         expect(Stock).to.be.a('function');
     });
 
-    describe('Making users', function() {
+    describe('Making stocks', function() {
         var exampleStock1 = {
             size: "M",
             quantity: 14
@@ -36,7 +36,7 @@ describe('Stock model', function () {
         };
         
 
-        beforeEach('Create the example user', function (done) {
+        beforeEach('Create the example stock', function (done) {
             Stock.create(exampleStock1, exampleStock2, function(err, exampleStock1, exampleStock2) {
                 if (err) throw err;
                 else {
@@ -53,7 +53,7 @@ describe('Stock model', function () {
         });
 
         it('can save a new stock', function (done) {
-            new Stock({size: "S"}).save(done);
+            new Stock(exampleStock1).save(done);
         });
 
 
@@ -70,6 +70,29 @@ describe('Stock model', function () {
                 expect(err).to.not.exist;
                 expect(stocks).to.have.length(2);
                 done();
+            });
+        });
+
+        describe('Rejection cases', function(){
+            it('will reject incorrect size input', function(done) {
+                new Stock({size: "LT", quantity: 5}).save(function (err, stock) {
+                    expect(err).to.exist;
+                    done();
+                });
+            });
+
+            it('will reject if size is not present', function(done) {
+                new Stock({quantity: 5}).save(function (err, stock) {
+                    expect(err).to.exist;
+                    done();
+                });
+            });            
+
+            it('will reject if quantity is not present', function(done) {
+                new Stock({size: "L"}).save(function (err, stock) {
+                    expect(err).to.exist;
+                    done();
+                });
             });
         });
     });

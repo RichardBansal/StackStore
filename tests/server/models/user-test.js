@@ -64,7 +64,7 @@ describe('User model', function () {
         });
 
         it('can save a new user', function (done) {
-            new User({name: "Scarlet"}).save(done);
+            new User({name: "Johnny", email:"johnny@gmail.com"}).save(done);
         });
 
 
@@ -80,6 +80,27 @@ describe('User model', function () {
             User.find({}, function(err, users) {
                 expect(err).to.not.exist;
                 expect(users).to.have.length(2);
+                done();
+            });
+        });
+
+        it('will error when user is added with no email', function(done) {
+            new User({name: "Suzie"}).save(function (err) {
+                expect(err).to.exist;
+                done();
+            });
+        });
+        
+        it('will error when user is added with invalid email', function(done) {
+            new User({email: "Suzie@gmail"}).save(function (err) {
+                expect(err).to.exist;
+                done();
+            });
+        });
+        
+        it('will error when user is added with duplicate email', function(done) {
+            new User({email: "rhett@gwtw.com"}).save(function (err) {
+                expect(err).to.exist;
                 done();
             });
         });
