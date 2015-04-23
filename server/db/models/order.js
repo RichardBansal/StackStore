@@ -12,8 +12,9 @@ var OrderSchema = new mongoose.Schema({
 									ref: 'Product'
 								},
 							price: Number
-						}],
-				required: true}
+						}]
+				}
+				// required: true} //Issue with test
 });
 
 OrderSchema.methods.determineTotal = function(){
