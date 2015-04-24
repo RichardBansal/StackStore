@@ -10,6 +10,7 @@ app.factory('ShirtFactory', function($http){
 			});	
 		},
 		shirts: "test",
+		
 		getShirt: function(id){
 			// console.log('this',this.products);
 			return $http.get('/api/products/'+id).then(fulfilled,rejected);

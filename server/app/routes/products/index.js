@@ -29,6 +29,8 @@ router.get("/:id",function(req,res,next){
 			.then(foundReviews,rejected);
 		
 		function foundReviews(reviews){
+			if(reviews.length === 0) res.json({product:product});
+			
 			q.all(
 					reviews.map(function(review){
 						return review.findUser();

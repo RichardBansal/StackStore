@@ -1,6 +1,6 @@
 app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, AuthService){
 	//ToDo: Promise Handling of getShirt
-	ShirtFactory.getShirt.call(ShirtFactory.shirts,$stateParams.id).then(fulfilled,rejected)
+	ShirtFactory.getShirt($stateParams.id).then(fulfilled,rejected);
 
 	function fulfilled(shirt){
 		// console.log('controller',shirt);
