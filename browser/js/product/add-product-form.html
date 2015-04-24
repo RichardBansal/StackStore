@@ -1,0 +1,16 @@
+<form novalidate class="create-account-form">
+    Name: <input type="text" ng-model="product.name" /><br>
+    Description: <textarea type="text" ng-model="product.description" /></textarea><br>
+    Image URL: <input type="text" ng-model="product.imageUrl" /><br>
+    Price: <input type="Number" ng-model="product.price" /><br>
+    Stock:
+    	XS: <input type="Number" ng-model="product.stock[0].quantity" />
+    	S:  <input type="Number" ng-model="product.stock[1].quantity" />
+    	M:  <input type="Number" ng-model="product.stock[2].quantity" />
+    	L:  <input type="Number" ng-model="product.stock[3].quantity" />
+    	XL: <input type="Number" ng-model="product.stock[4].quantity" />
+
+    Categories: <input type="text" ng-model="product.category" /><br>
+    <input type="button" ng-click="" value="Reset" />
+    <input type="submit" ng-click="createProduct()" value="Save" />
+</form>
