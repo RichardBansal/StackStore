@@ -20,7 +20,6 @@ router.get("/",function(req,res,next){
 
 
 router.get("/:id",function(req,res,next){
-	// console.log(req.params.id);
 	Product.findOne({"_id":req.params.id}).exec()
 		.then(foundProduct, rejected);
 
@@ -38,22 +37,10 @@ router.get("/:id",function(req,res,next){
 				.then(foundUser,rejected);
 
 			function foundUser(user){
-				// console.log('check123', user, product, reviews);
-				res.json({user:user, product:product, reviews:reviews});
-				// {product:product, reviews:{reviews:reviews, user:user}}
-				// TODO: REF: COMPLETE THIS VIA MODEL.METHOD
+				// console.log();
+				res.json({user:user[0].name, product:product, reviews:reviews});
 			}
-
-			// function rejected(error){
-			// 	console.log(error);
-			// 	next(error);
-			// }
 		}
-
-		// function rejected(error){
-		// 	console.log(error);
-		// 	next(error);
-		// }
 	}
 
 	function rejected(error){

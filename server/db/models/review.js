@@ -15,16 +15,8 @@ var schema = new mongoose.Schema({
 });
 
 schema.methods.findUser = function findUser(){
-	// var userFindsPromiseArr = [];
-	// console.log('this review',this);
 	var review = this;
-	// review.forEach(function(review){
-		// userFindsPromiseArr.push
-		// (
 	return	User.findOne({"_id":review.user}).exec();
-		// );
-	// });
-	// return userFindsPromiseArr;
 };
 
 mongoose.model('Review', schema);
