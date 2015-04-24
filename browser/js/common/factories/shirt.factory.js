@@ -1,11 +1,13 @@
 app.factory('ShirtFactory', function($http){
 	return {
-		getShirts: function (){
-			return $http.get('/api/products').then(function(shirts){
-				return shirts.data;
-			},function(error){
-				console.log(error);
-			});
-		}
+		getShirts: function (category){
+
+			var queryParams = {};
+			if(category) queryParams.category = category;
+
+			return $http.get('/api/products', {params:queryParams}).then(function(response){
+				return response.data;
+			});	
+		},
 	};
 });

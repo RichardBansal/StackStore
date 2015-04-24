@@ -2,16 +2,17 @@
 var router = require('express').Router();
 var Product = require('mongoose').model('Product');
 
-router.get("/",function(req,res,next){
-	Product.find({}).exec()
+router.get('/',function(req,res,next){
+	var modelParams = req.query.category ? {category: req.query.category} : {};
+	Product.find(modelParams).exec()
 		.then(fulfilled, rejected);
 
 	function fulfilled(products){
-		res.send(products);
+		res.json(products).status(200);
 	}
 
-	function rejected(error){
-		console.log(error);
+	function rejected(err){
+		next(err);
 	}
 });
 
