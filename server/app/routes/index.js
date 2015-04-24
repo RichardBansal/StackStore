@@ -7,7 +7,7 @@ router.use('/members', require('./members'));
 // router.use('/admin',require('./admin'));
 // router.use('/orders',require('./orders'));
 router.use('/products',require('./products'));
-router.use('/accounts',require('./accounts'));
+router.use('/account',require('./account'));
 
 
 console.log('app routes');
