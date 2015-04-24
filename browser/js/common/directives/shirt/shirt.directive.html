@@ -1,7 +1,26 @@
-test display of shirts
 <br/>
+<button ng-if="isLoggedIn()">Admin Only: Update Shirt</button>
+
+<br/>
+
 <span ng-repeat="(key,value) in shirt">
 	{{ key }} | {{ value }} <br/>
 </span>
+
+<form ng-if="!isLoggedIn()">
+	Quantity<input type="text"/>
+
+	Size
+	<select>
+		<options></options>
+	</select>
+	<!-- TODO: Stocks Model Updated, need to reflect here -->
+	<button>Buy Shirt</button>
+</form>
+
+
+<br/>
+
+<br/>
 reviews
 <reviews></reviews>
