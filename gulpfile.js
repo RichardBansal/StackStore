@@ -129,11 +129,11 @@ gulp.task('seedDB', function () {
     var reviews = [
         {
             stars: 5,
-            text: "Best shirt on the friggin' planet!"
+            text: "Best shirt on the friggin' planet!Best shirt on the friggin' planet!Best shirt on the friggin' planet!"
         },
         {
             stars: 3,
-            text: "It's ok, but I've had better."
+            text: "It's ok, but I've had better.It's ok, but I've had better.It's ok, but I've had better.It's ok, but I've had better."
         }
     ];
 
