@@ -13,10 +13,10 @@
 	<!-- button to update to make post -->
 	<!-- <input ng-repeat -->
 	<!-- <label>Category:</label> -->
-	<!-- <span ng-repeat="(key,value) in shirt"> -->
-		<!-- <label>{{key}}</label> -->
-		<input ng-model="shirt.price" type="text"></input></br>	
-	<!-- </span> -->
+	<span ng-repeat="(key,value) in shirt">
+		<label>{{key}}</label>
+		<input ng-model="shirt[key]" type="text"></input></br>	
+	</span>
 </form>
 
 <form ng-if="!isLoggedIn()">

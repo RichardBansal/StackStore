@@ -18,7 +18,6 @@ router.get("/",function(req,res,next){
 	}
 });
 
-
 router.get("/:id",function(req,res,next){
 	Product.findOne({"_id":req.params.id}).exec()
 		.then(foundProduct, rejected);
@@ -44,6 +43,21 @@ router.get("/:id",function(req,res,next){
 	}
 
 	function rejected(error){
+		console.log(error);
+		next(error);
+	}
+});
+
+router.put("/edit/:id", function (req,res,next){
+	// console.log('edit post made', req.params.id, req.body);
+	Product.findByIdAndUpdate(req.params.id,req.body).exec().then(fulfilled, rejected);
+
+	function fulfilled(response){
+		console.log(response);
+		res.sendStatus(200);
+	}
+
+	function rejected(){
 		console.log(error);
 		next(error);
 	}

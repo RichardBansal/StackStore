@@ -20,3 +20,6 @@ schema.methods.findUser = function findUser(){
 };
 
 mongoose.model('Review', schema);
+
+//TODO: Need to clean up sending of data back and fourth, for example you have user password being sent
+//And for updating a product, you don't need to send the specific ID (its being passed in the params.id)

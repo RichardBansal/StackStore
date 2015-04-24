@@ -26,6 +26,24 @@ app.factory('ShirtFactory', function($http){
 				// console.log('shirt',shirt);
 				// return shirt._id === id;
 			// });
+		},
+		updateShirt: function(id,shirt){
+			console.log('shirt',shirt);
+			return $http.put('/api/products/edit/'+id,shirt).then(fulfilled,rejected);
+
+			function fulfilled(response){
+				console.log(response);
+				//return
+				if (response.status === 200){
+					return true;
+				} else {
+					return false;
+				}
+			}
+			function rejected(error){
+				console.log(error);
+			}
+
 		}
 	};
 });
