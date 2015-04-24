@@ -123,6 +123,14 @@ gulp.task('seedDB', function () {
         {
             size: "L",
             quantity: 6
+        },
+        {
+            size: "S",
+            quantity: 5
+        },
+        {
+            size: "XS",
+            quantity: 3
         }
     ];
 
@@ -197,6 +205,8 @@ gulp.task('seedDB', function () {
             }),
             Product.findOne({name: "Nimit T"}).exec().then(function(product) {
                 product.stock.push(stock[1]);
+                product.stock.push(stock[2]);
+                product.stock.push(stock[3]);
                 product.reviews.push(reviews[1]);
                 product.save();
                 return product;
