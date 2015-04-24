@@ -25,64 +25,35 @@ router.get("/:id",function(req,res,next){
 		.then(foundProduct, rejected);
 
 	function foundProduct(product){
-		// console.log('product',product);
-		//iterate
 
-		function findReviews(){
-			var reviewFindsPromiseArr = [];
-			// console.log(product.reviews);
-
-			product.reviews.forEach(function(reviewID){
-				// console.log('reviewID',reviewID);
-				reviewFindsPromiseArr.push
-					(
-						Review.findOne({"_id":reviewID}).exec()
-					);
-			});
-			return reviewFindsPromiseArr;
-		}
-
-		q.all(findReviews())
+		q.all(product.findReviews())
 			.then(foundReviews,rejected);
-
-
+		
 		function foundReviews(reviews){
-
-			function findUser(){
-				var userFindsPromiseArr = [];
-				
-				console.log(reviews);
-
-				reviews.forEach(function(review){
-					userFindsPromiseArr.push
-					(
-						User.findOne({"_id":review.user}).exec()
-					);
-				});
-
-				return userFindsPromiseArr;
-			}
-
-			q.all(findUser())
+			q.all(
+					reviews.map(function(review){
+						return review.findUser();
+					})
+				)
 				.then(foundUser,rejected);
 
 			function foundUser(user){
-				console.log('check123', user, product, reviews);
+				// console.log('check123', user, product, reviews);
 				res.json({user:user, product:product, reviews:reviews});
 				// {product:product, reviews:{reviews:reviews, user:user}}
 				// TODO: REF: COMPLETE THIS VIA MODEL.METHOD
 			}
 
-			function rejected(error){
-				console.log(error);
-				next(error);
-			}
+			// function rejected(error){
+			// 	console.log(error);
+			// 	next(error);
+			// }
 		}
 
-		function rejected(error){
-			console.log(error);
-			next(error);
-		}
+		// function rejected(error){
+		// 	console.log(error);
+		// 	next(error);
+		// }
 	}
 
 	function rejected(error){

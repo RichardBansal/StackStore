@@ -1,12 +1,46 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
+
+require("../../../server/db/models/review");
+var Review = require('mongoose').model('Review');
 
 var schema = new mongoose.Schema({
 	name: {type: String, required: true, unique: true},
 	description: {type: String, required: true},
-	imageUrl: {type: String, default: 'http://placehold.it/200x200'},
+	imageUrl: {type: String, default: "http://placehold.it/200x200"},
 	price: {type: Number, required: true},
-	stock: [{type: mongoose.Schema.Types.ObjectId, ref: 'Stock'}],
+	stock: [{type: mongoose.Schema.Types.ObjectId, ref: "Stock"}],
 	category:[{type: String, required: true}],
-	reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'Review'}]
+	reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}]
 });
-mongoose.model('Product', schema);
+
+schema.methods.findReviews = function findReviews(){
+	// console.log('this',this);
+	var product = this;
+
+	var reviewFindsPromiseArr = [];
+
+	product.reviews.forEach(function(reviewID){
+		reviewFindsPromiseArr.push
+			(
+				Review.findOne({"_id":reviewID}).exec()
+			);
+	});
+	return reviewFindsPromiseArr;
+	//return promise to return all reviews data
+};
+
+//find product
+	//get reviews
+		//get user
+// responseObject =
+// 					{
+// 						product:product,
+// 						reviews:[
+// 									{
+// 										reviews:reviews,
+// 										user:user
+// 									}
+// 								]
+// 					};
+
+mongoose.model("Product", schema);
