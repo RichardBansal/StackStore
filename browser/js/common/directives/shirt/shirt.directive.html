@@ -1,11 +1,18 @@
 <br/>
-<button ng-if="isLoggedIn()">Admin Only: Update Shirt</button>
+<button ng-if="isLoggedIn()" ng-click="makeEditable()">
+	{{ adminAction }}
+</button>
 
 <br/>
 
-<span ng-repeat="(key,value) in shirt">
+<span ng-if="!edit" ng-repeat="(key,value) in shirt">
 	{{ key }} | {{ value }} <br/>
 </span>
+
+<form ng-if="edit">
+	Test
+	<!-- button to update to make post -->
+</form>
 
 <form ng-if="!isLoggedIn()">
 	Quantity<input type="text"/>
