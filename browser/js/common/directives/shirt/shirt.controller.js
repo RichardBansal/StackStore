@@ -10,8 +10,14 @@ app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, Au
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";
+		// $scope.price
 
 		$scope.makeEditable = function(){
+
+			if($scope.edit === true){
+				console.log($scope);
+			}
+
 			$scope.edit = !$scope.edit
 			$scope.adminAction = $scope.edit ? "Save Product":"Update Product";
 		}
