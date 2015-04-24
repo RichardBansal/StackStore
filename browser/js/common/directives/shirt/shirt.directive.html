@@ -1,0 +1,38 @@
+<br/>
+<button ng-if="isLoggedIn()" ng-click="makeEditable()">
+	{{ adminAction }}
+</button>
+
+<br/>
+
+<span ng-if="!edit" ng-repeat="(key,value) in shirt">
+	{{ key }} | {{ value }} <br/>
+</span>
+
+<form ng-if="edit" name="form">
+	<!-- button to update to make post -->
+	<!-- <input ng-repeat -->
+	<!-- <label>Category:</label> -->
+	<span ng-repeat="(key,value) in shirt">
+		<label>{{key}}</label>
+		<input ng-model="shirt[key]" type="text"></input></br>	
+	</span>
+</form>
+
+<form ng-if="!isLoggedIn()">
+	Quantity<input type="text"/>
+
+	Size
+	<select>
+		<options></options>
+	</select>
+	<!-- TODO: Stocks Model Updated, need to reflect here -->
+	<button>Buy Shirt</button>
+</form>
+
+
+<br/>
+
+<br/>
+reviews
+<reviews></reviews>

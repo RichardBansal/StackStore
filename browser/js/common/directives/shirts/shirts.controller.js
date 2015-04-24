@@ -10,8 +10,6 @@ app.controller('ShirtsController', function($scope, ShirtFactory){
 			function rejected(error){
 				console.log(error);
 			}
-			}
 		};
-
 		$scope.getShirts();
 });
