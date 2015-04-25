@@ -1,9 +1,19 @@
-Your Email Is:{{user.email}}
-<h1>Email: {{user.email}}</h1>
-<h1>Billing Address: {{user.addressBilling}}</h1>
-<h1>Shipping Address: {{user.addressShipping}}</h1>
-<h1>Name: {{user.name}}</h1>
-<h1>Phone Number: {{user.phoneNumber}}</h1>
+<div ng-if="!edit">
+	<h1>Email: {{user.email}}</h1>
+	<h1>Billing Address: {{user.addressBilling}}</h1>
+	<h1>Shipping Address: {{user.addressShipping}}</h1>
+	<h1>Name: {{user.name}}</h1>
+	<h1>Phone Number: {{user.phoneNumber}}</h1>
+</div>
+<form ng-if="edit">
+	<div ng-repeat="(key,value) in user">
+		<label>{{ key }}</label>
+		<input ng-model="user[key]" type="text">
+	</div>
+</form>
+
+<button ng-click="makeEditable()">{{ editAction }}</button>
+
 <hr>
 
 <div ng-repeat="order in orders">
