@@ -7,20 +7,35 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
-            scope.items = [
-                { label: 'Home', state: 'home' },
-                // TODO: auth:false do not work, need to hide for signed in user
-                { label: 'Create Account', state: 'createAccount', auth: false},
-                { label: 'My Account', state: 'account', auth: true},
-                { label: 'Shopping Cart', state: 'cart' },
-                // TODO: for 'admins only - show the dashboard link'
-                { label: 'Admin Dashboard', state: 'admin', auth: true }
+            scope.standardItems = [
+                { label: 'Home', state: 'home' }
             ];
+            scope.loggedOutItems = [
+                { label: 'Create Account', state: 'createAccount'},
+                { label: 'Shopping Cart', state: 'cart' }
+            ];
+            scope.loggedInItems = [
+                { label: 'My Account', state: 'account'},
+                { label: 'Shopping Cart', state: 'cart' }
+            ];
+            scope.adminItems = [
+                { label: 'My Account', state: 'account'},
+                { label: 'Admin Dashboard', state: 'admin'}
+            ];// { label: 'Admin Dashboard', state: 'admin', admin: true}
+        
+            // scope.adminItems=[
+            //     { label: 'Admin Dashboard', state: 'admin', admin: true}
+            // ];
 
             scope.user = null;
 
             scope.isLoggedIn = function () {
+                //scope.items[1]={ label: 'My Account', state: 'account', auth: true};
                 return AuthService.isAuthenticated();
+            };
+
+            scope.isAdmin = function() {
+                return AuthService.isAdmin();
             };
 
             scope.logout = function () {
@@ -28,6 +43,11 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                    $state.go('home');
                 });
             };
+
+            // if(scope.isLoggedIn()){
+            //     scope.items[1]={ label: 'My Account', state: 'account', auth: true};
+            //     scope.digest();
+            // }
 
             var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
