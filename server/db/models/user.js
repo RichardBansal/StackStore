@@ -1,6 +1,7 @@
 'use strict';
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var q = require('q');
 
 function UserEmailValidator(email){
     var re = /\S+@\S+\.\S+/;
@@ -83,5 +84,9 @@ UserSchema.statics.encryptPassword = encryptPassword;
 UserSchema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
+
+UserSchema.methods.saveAsync = function () {
+    return q.ninvoke(this,'save');
+};
 
 mongoose.model('User', UserSchema);

@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+var q = require('q');
+
 var OrderSchema = new mongoose.Schema({
     purchaseDate: {type: Date, default: Date.now, required: true},
     totalCost: {type: Number, min:0, default: 0, required: true},
@@ -23,6 +25,10 @@ OrderSchema.methods.determineTotal = function(){
         sum += product.price;
     });
     return sum;
+};
+
+OrderSchema.methods.saveAsync = function () {
+    return q.ninvoke(this,'save');
 };
 
 mongoose.model('Order', OrderSchema);
