@@ -1,4 +1,4 @@
-app.directive('accountDetails',function($http){
+app.directive('accountDetails',function($http, UserFactory){
 	return{
 		restrict: 'E',
 		templateUrl: 'js/account/account-template.html',
@@ -23,10 +23,14 @@ app.directive('accountDetails',function($http){
 
 			scope.makeEditable = function() {
 				if(!scope.edit) {
+					scope.edit = !scope.edit;
 					scope.editAction = "Save my info";
-				}
+				}	
 				else {
 					var user = scope.user;
+
+					// console.log("USER!!!!!!!!");
+					// console.log(user);
 
 					UserFactory.updateUser(user._id, user).then(fulfilled, rejected);
 

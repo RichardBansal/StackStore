@@ -1,11 +1,12 @@
 app.factory('UserFactory', function($http) {
 	return {
 		updateUser: function(id, user) {
-			return $http.put('/api/user/edit/' + id, user).then(fulfilled, rejected);
+			console.log("In user factory: ", user);
+			return $http.put('/api/account/edit', user).then(fulfilled, rejected);
 
 			function fulfilled(response){
-				console.log(response);
-				//return
+				//console.log(response);
+
 				if (response.status === 200){
 					return true;
 				} else {
