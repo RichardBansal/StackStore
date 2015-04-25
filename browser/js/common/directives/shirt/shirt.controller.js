@@ -21,6 +21,9 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		// 	item:
 		// }
 
+		// var parentProduct = {}
+		//$scope.shirt changed to parentProduct
+
 		var currentCart = JSON.parse($window.localStorage.cart);
 		currentCart.push($scope.shirt);
 

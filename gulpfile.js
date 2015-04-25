@@ -46,6 +46,7 @@ gulp.task('buildJS', function () {
         .pipe(gulp.dest('./public'));
 });
 
+// TODO: Fix SeedDB issue with order, new updates made
 gulp.task('testServerJS', function () {
     return gulp.src('./tests/server/**/*.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
