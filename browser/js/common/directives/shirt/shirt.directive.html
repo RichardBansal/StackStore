@@ -1,5 +1,5 @@
 <br/>
-<button ng-if="isLoggedIn()" ng-click="makeEditable()">
+<button ng-if="isAdmin()" ng-click="makeEditable()">
 	{{ adminAction }}
 </button>
 
@@ -26,8 +26,10 @@
 	</span>
 </form>
 
-<form ng-if="!isLoggedIn()">
+
+<form ng-if="!isAdmin()">
 	Quantity<input type="text" ng-model='shirt.quantity'/>
+
 
 	Size
 	<select ng-model='shirt.size'>

@@ -32,14 +32,13 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 	}
 
 	function fulfilled(shirt){ //shirt is actually response
-		// console.log('controller',shirt);
-
 		$scope.shirt = shirt.data.product;
 		$scope.size = null;
 		$scope.stock = shirt.data.product.stock;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
 		console.log($scope.stock);
+
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";
@@ -80,9 +79,16 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		}
 
         $scope.isLoggedIn = function () {
+        	console.log("Hi");
             return AuthService.isAuthenticated();
         };
+
+        $scope.isAdmin = function() {
+        	return AuthService.isAdmin();
+        };
 	}
+
+
 
 	function rejected(error){
 		console.log(error);
