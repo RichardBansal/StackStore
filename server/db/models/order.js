@@ -3,8 +3,8 @@ var mongoose = require('mongoose');
 var OrderSchema = new mongoose.Schema({
     // personName: {type: String, required:true},
     //TODO: Update seedDB for billing/shipping address
-    billingAddress: {type:String, required:true},
-    shippingAddress: {type:String,required:true},
+    addressBilling: {type:String, required:true},
+    addressShipping: {type:String,required:true},
     purchaseDate: {type: Date, default: Date.now, required: true},
     totalCost: {type: Number, min:0, default: 0, required: true},
     status: {type: String, default: "Open", required:true},
