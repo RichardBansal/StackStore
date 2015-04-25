@@ -3,11 +3,10 @@ app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, Au
 	ShirtFactory.getShirt($stateParams.id).then(fulfilled,rejected);
 
 	function fulfilled(shirt){ //shirt is actually response
-		// console.log('controller',shirt);
+		console.log('controller',shirt);
 		$scope.shirt = shirt.data.product;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
-		console.log(shirt.data);
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";
@@ -48,9 +47,16 @@ app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, Au
 		}
 
         $scope.isLoggedIn = function () {
+        	console.log("Hi");
             return AuthService.isAuthenticated();
         };
+
+        $scope.isAdmin = function() {
+        	return AuthService.isAdmin();
+        };
 	}
+
+
 
 	function rejected(error){
 		console.log(error);
