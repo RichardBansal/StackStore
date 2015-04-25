@@ -47,6 +47,16 @@ app.factory('ShirtFactory', function($http){
 				console.log(error);
 			}
 
+		},
+
+		createShirt: function(newShirt){
+			return $http.post('/api/products', newShirt).then(function(shirt){
+				return shirt;
+			}, function(error){
+				console.log(error);
+
+			});
+
 		}
 	};
 });
