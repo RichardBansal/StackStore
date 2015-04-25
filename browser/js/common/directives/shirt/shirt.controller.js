@@ -26,15 +26,23 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		console.log($window.localStorage);
 	}
 
-	function fulfilled(shirt){
+	function fulfilled(shirt){ //shirt is actually response
 		// console.log('controller',shirt);
 		$scope.shirt = shirt.data.product;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
+		console.log(shirt.data);
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";
 		// $scope.price
+
+
+		$scope.toTitleCase = function(str) {
+		    return str.replace(/\w\S*/g, function(txt){
+		   		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		    });
+		};
 
 		$scope.makeEditable = function(){
 			//Editing State
