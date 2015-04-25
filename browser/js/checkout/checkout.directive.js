@@ -1,4 +1,4 @@
-app.directive('checkout', ['', function(){
+app.directive('checkout', function(){
 	// Runs during compile
 	return {
 		// name: '',
@@ -17,4 +17,4 @@ app.directive('checkout', ['', function(){
 			
 		// }
 	};
-}]);
+});

@@ -46,6 +46,7 @@ gulp.task('buildJS', function () {
         .pipe(gulp.dest('./public'));
 });
 
+// TODO: Fix SeedDB issue with order, new updates made
 gulp.task('testServerJS', function () {
     return gulp.src('./tests/server/**/*.js', {read: false})
         .pipe(mocha({reporter: 'spec'}));
@@ -74,7 +75,7 @@ gulp.task('seedDB', function () {
             addressBilling: "55 Hanover",
             addressShipping: "56 Wall St.",
             phoneNumber: "555-555-5555",
-            accountType: "user",
+            accountType: "shopper",
             email: "bob@excite.com",
             password: "password"
         },
@@ -83,7 +84,7 @@ gulp.task('seedDB', function () {
             addressBilling: "506 Broadway",
             addressShipping: "303 W 16th",
             phoneNumber: "123-456-7890",
-            accountType: "user",
+            accountType: "admin",
             email: "anne@gmail.com",
             password: "woof"
         }
@@ -123,6 +124,14 @@ gulp.task('seedDB', function () {
         {
             size: "L",
             quantity: 6
+        },
+        {
+            size: "S",
+            quantity: 5
+        },
+        {
+            size: "XS",
+            quantity: 3
         }
     ];
 
@@ -197,6 +206,8 @@ gulp.task('seedDB', function () {
             }),
             Product.findOne({name: "Nimit T"}).exec().then(function(product) {
                 product.stock.push(stock[1]);
+                product.stock.push(stock[2]);
+                product.stock.push(stock[3]);
                 product.reviews.push(reviews[1]);
                 product.save();
                 return product;

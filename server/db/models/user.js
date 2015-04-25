@@ -26,6 +26,9 @@ var UserSchema = new mongoose.Schema({
     },
     accountType: {
         type: String
+        //required: true,
+        //enum: ["admin", "shopper"],
+        //default: "shopper"
     },
     email: {
         type: String,
