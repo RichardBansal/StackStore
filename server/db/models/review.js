@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 require("../../../server/db/models/user");
 var User = require('mongoose').model('User');
+var q = require('q');
 
 function minLength(str) {
 	return str.length > 40;
@@ -17,6 +18,10 @@ var schema = new mongoose.Schema({
 schema.methods.findUser = function findUser(){
 	var review = this;
 	return	User.findOne({"_id":review.user}).exec();
+};
+
+schema.methods.saveAsync = function () {
+    return q.ninvoke(this,'save');
 };
 
 mongoose.model('Review', schema);

@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+var q = require('q');
+
 var OrderSchema = new mongoose.Schema({
     // personName: {type: String, required:true},
     //TODO: Update seedDB for billing/shipping address
@@ -28,6 +30,10 @@ OrderSchema.methods.determineTotal = function(){
         sum += product.price;
     });
     return sum;
+};
+
+OrderSchema.methods.saveAsync = function () {
+    return q.ninvoke(this,'save');
 };
 
 mongoose.model('Order', OrderSchema);

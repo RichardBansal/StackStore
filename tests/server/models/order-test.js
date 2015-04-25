@@ -158,8 +158,8 @@ describe("Order model", function () {
         });
 
         it("order must contain line items that capture price", function(done){
-            setTimeout(function(){
-                Orders.find({}).exec().then(fulfilled, rejected)},0);
+            // setTimeout(function(){
+                Orders.find({}).exec().then(fulfilled, rejected)//},0);
 
             function fulfilled(orders){
                 function productsPrice(){
@@ -180,9 +180,9 @@ describe("Order model", function () {
 
         it("the order shall keep the current price, and not capture future price changes", function(done){
             // console.log(Orders.find({}));
-            setTimeout(function(){
+            // setTimeout(function(){
                 Orders.find({}).exec().then(fulfilled, rejected)
-            },0);
+            // },0);
 
             function fulfilled(order){
                 // console.log('order',order);
@@ -191,10 +191,10 @@ describe("Order model", function () {
                 // console.log('product',product);
                 
                 //TODO ERROR EXISTS HERE
-                setTimeout(function(){
+                // setTimeout(function(){
                     Products.findOne({"_id":product.product}).exec()
                     .then(productFound);
-                },0);
+                // },0);
 
 
                 function productFound(product){
