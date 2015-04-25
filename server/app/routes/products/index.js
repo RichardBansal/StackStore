@@ -66,4 +66,18 @@ router.put("/edit/:id", function (req,res,next){
 	}
 });
 
+router.post("/",function(req,res,next){
+	// console.log(req.body);
+	Product.create(req.body)
+		.then(fulfilled, rejected);
+
+	function fulfilled(products){
+		// res.redirect('/');
+	}
+
+	function rejected(error){
+		next(error);
+	}
+});
+
 module.exports = router;
