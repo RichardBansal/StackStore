@@ -5,3 +5,10 @@ Edit Quantity
 Remove Item
 <!-- <cart></cart> -->
 <button ui-sref="checkout">Checkout</button>
+
+<span ng-repeat="item in cart">
+	{{item.name}} </br>
+	{{item.description}} </br>
+	{{item.price}} </br>
+	{{item.name}} </br>
+</span>

@@ -1,6 +1,30 @@
-app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, AuthService){
+app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFactory, AuthService){
 	//ToDo: Promise Handling of getShirt
 	ShirtFactory.getShirt($stateParams.id).then(fulfilled,rejected);
+	
+	// var test = {id:"12321",quantity:3,size:"L"};
+	// var items = [];
+	// items.push(test);
+
+	// $window.localStorage.cart = JSON.stringify(items);
+	if(!$window.localStorage.hasOwnProperty("cart")){
+		$window.localStorage.cart = JSON.stringify([]);
+	}
+	//JSON.parse to receive object from local storage
+	// 
+
+	$scope.addToCart = function(){
+		// console.log('clicked');
+		// var items = {
+		// 	item:
+		// }
+
+		var currentCart = JSON.parse($window.localStorage.cart);
+		currentCart.push($scope.shirt);
+
+		$window.localStorage.cart = JSON.stringify(currentCart);
+		console.log($window.localStorage);
+	}
 
 	function fulfilled(shirt){
 		// console.log('controller',shirt);
