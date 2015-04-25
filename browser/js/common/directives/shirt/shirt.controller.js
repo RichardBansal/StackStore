@@ -7,6 +7,7 @@ app.controller('ShirtController',function($scope, $stateParams, ShirtFactory, Au
 		$scope.shirt = shirt.data.product;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
+		console.log(shirt.data);
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";

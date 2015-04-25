@@ -74,7 +74,7 @@ gulp.task('seedDB', function () {
             addressBilling: "55 Hanover",
             addressShipping: "56 Wall St.",
             phoneNumber: "555-555-5555",
-            accountType: "user",
+            accountType: "shopper",
             email: "bob@excite.com",
             password: "password"
         },
@@ -83,7 +83,7 @@ gulp.task('seedDB', function () {
             addressBilling: "506 Broadway",
             addressShipping: "303 W 16th",
             phoneNumber: "123-456-7890",
-            accountType: "user",
+            accountType: "admin",
             email: "anne@gmail.com",
             password: "woof"
         }
