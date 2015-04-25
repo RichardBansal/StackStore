@@ -14,6 +14,8 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 	// 
 
 	$scope.addToCart = function(){
+		// console.log($scope.shirt.size);
+		// console.log($scope.shirt.quantity);
 		// console.log('clicked');
 		// var items = {
 		// 	item:
@@ -28,10 +30,13 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 
 	function fulfilled(shirt){ //shirt is actually response
 		// console.log('controller',shirt);
+
 		$scope.shirt = shirt.data.product;
+		$scope.size = null;
+		$scope.stock = shirt.data.product.stock;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
-		console.log(shirt.data);
+		console.log($scope.stock);
 
 		$scope.edit = false;
 		$scope.adminAction = "Update Product";

@@ -27,11 +27,11 @@
 </form>
 
 <form ng-if="!isLoggedIn()">
-	Quantity<input type="text"/>
+	Quantity<input type="text" ng-model='shirt.quantity'/>
 
 	Size
-	<select>
-		<options></options>
+	<select ng-model='shirt.size'>
+		<option ng-repeat="item in stock" >{{item.size}}</option>
 	</select>
 	<!-- TODO: Stocks Model Updated, need to reflect here -->
 	<button ng-click="addToCart()">Buy Shirt</button>
