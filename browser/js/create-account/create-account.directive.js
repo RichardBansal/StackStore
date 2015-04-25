@@ -10,11 +10,12 @@ app.directive('createAccount', function($http){
 				phoneNumber: "",
 				email: "",
 				password: ""
+				//accountType: "shopper"
 			};
 
 			scope.createAccount = function (){
 				//TODO: what happens after users create an account
-					$http.post('/api/accounts/create', scope.user);
+				$http.post('/api/account/create', scope.user);
 			};
 		}
 	};

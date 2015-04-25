@@ -4,6 +4,7 @@ var User = require('mongoose').model('User');
 var Order = require('mongoose').model('Order');
 
 router.post('/create', function(req, res, next){
+	console.log("Create user route!");
 	User.create(req.body).then(fulfilled, rejected);
 	function fulfilled(user){
 		console.log(user);

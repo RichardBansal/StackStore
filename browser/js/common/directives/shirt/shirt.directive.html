@@ -1,13 +1,20 @@
 <br/>
-<button ng-if="isLoggedIn()" ng-click="makeEditable()">
+<button ng-if="isAdmin()" ng-click="makeEditable()">
 	{{ adminAction }}
 </button>
 
 <br/>
 
-<span ng-if="!edit" ng-repeat="(key,value) in shirt">
-	{{ key }} | {{ value }} <br/>
-</span>
+<div ng-if="!edit">
+	<h1>Name: {{ shirt.name }}</h1>
+	<p>Description: {{ shirt.description}}</p>
+	<h2>Stock: {{ shirt.stock }} </h2>
+	<h2>Price: {{shirt.price}}</h2>
+	<h2>Categories: {{ shirt.categories}}</h2>
+
+	<!-- Image -->
+	<br/>
+</div>
 
 <form ng-if="edit" name="form">
 	<!-- button to update to make post -->
@@ -34,5 +41,6 @@
 <br/>
 
 <br/>
-reviews
+
+<h2>Reviews</h2>
 <reviews></reviews>
