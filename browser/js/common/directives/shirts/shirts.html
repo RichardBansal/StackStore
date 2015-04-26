@@ -1,8 +1,18 @@
-<div ng-repeat='shirt in shirts'>
-	<img ng-src = "{{shirt.imageUrl}}"/>
-	<h1 ui-sref="shirt({ id: shirt._id })">Name: {{shirt.name}}</h1>
-	<h2>Description: {{shirt.description}}</h2>
-	<h2>Price: {{shirt.price}}</h2>
-	<h2>Categories:</h2><h2 ng-repeat='category in shirt.category' ng-click='getShirts(category)'>{{category}}</h2>
+<div class="row shirts-row">
+	<div ng-repeat='shirt in shirts' class="col-md-6 shirts-col clearfix">
+		<div class="col-sm-5 no-left-padding">
+			<img ng-src="{{shirt.imageUrl}}"/>
+		</div>
+		<div class="col-sm-7 no-left-padding">
+			<h1 ui-sref="shirt({ id: shirt._id })" class="text-left">Name: {{shirt.name}}</h1>
+			<p>Description: {{shirt.description}}</p>
+			<p>Price: {{shirt.price}}</p>
+			<p>Categories: 
+				<span ng-repeat='category in shirt.category' ng-click='getShirts(category)'>
+					{{category}}
+				</span>
+			</p>
+		</div>
+	</div>
 	<br>
 </div>
