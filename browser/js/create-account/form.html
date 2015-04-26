@@ -1,10 +1,29 @@
-<form novalidate class="create-account-form">
-    Name: <input type="text" ng-model="user.name" /><br/>
-    E-mail: <input type="email" ng-model="user.email" /><br/>
-    Billing Address: <input type="text" ng-model="user.addressBilling" /><br/>
-    Shipping Address: <input type="text" ng-model="user.addressShipping" /><br/>
-    Phone Number: <input type="text" ng-model="user.phoneNumber" /><br/>
-    Password: <input type="password" ng-model="user.password" /><br/>
-    <input type="button" ng-click="" value="Reset" />
-    <input type="submit" ng-click="createAccount()" value="Save" />
+<form name="create-account-form" id="create-account-form" novalidate class="create-account-form">
+	<div class="form-group">
+	    <label for="create-account-form-name">Name</label>
+	    <input id="create-account-form-name" class="form-control" type="text" ng-model="user.name" />
+	</div>
+	<div class="form-group">
+	    <label for="create-account-form-email">E-mail</label> 
+	    <input id="create-account-form-email" class="form-control" type="email" ng-model="user.email" />
+	</div>
+	<div class="form-group">
+	    <label for="create-account-form-billing">Billing Address</label> 
+	    <input id="create-account-form-billing" class="form-control" type="text" ng-model="user.addressBilling" />
+	</div>
+	<div class="form-group">
+	    <label for="create-account-form-shipping">Shipping Address</label> 
+	    <input id="create-account-form-shipping" class="form-control" type="text" ng-model="user.addressShipping" />
+	</div>
+	<div class="form-group">
+	    <label for="create-account-form-phone">Phone Number</label> 
+	    <input id="create-account-form-phone" class="form-control" type="text" ng-model="user.phoneNumber" />
+	</div>
+	<div class="form-group">
+	    <label for="create-account-form-password">Password</label> 
+	    <input id="create-account-form-password" class="form-control" type="password" ng-model="user.password" />
+	</div>
+    
+    <input class="btn btn-danger" type="button" ng-click="" value="Reset" />
+    <input class="btn btn-primary" type="submit" ng-click="createAccount()" value="Save" />
 </form>
