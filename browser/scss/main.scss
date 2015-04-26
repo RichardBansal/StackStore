@@ -8,6 +8,10 @@ img {
 	display: block;
 }
 
+.no-left-padding {
+	padding-left: 0;
+}
+
 @mixin clearfix {
   &:after {
     content: "";

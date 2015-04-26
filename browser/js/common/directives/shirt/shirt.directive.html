@@ -1,43 +1,57 @@
-<br/>
-<button ng-if="isAdmin()" ng-click="makeEditable()">
-	{{ adminAction }}
-</button>
-
-<br/>
-
-<div ng-if="!edit">
-	<h1>Name: {{ shirt.name }}</h1>
-	<p>Description: {{ shirt.description}}</p>
-	<h2>Stock: {{ shirt.stock }} </h2>
-	<h2>Price: {{shirt.price}}</h2>
-	<h2>Categories: {{ shirt.categories}}</h2>
-
-	<!-- Image -->
-	<br/>
+<div class="row" ng-if="isAdmin()">
+	<div class="col-sm-12 bg-info shirt-admin">
+		<strong>Admin options:</strong>
+		<button class="btn" ng-click="makeEditable()">
+			{{ adminAction }}
+		</button>
+	</div>
 </div>
 
-<form ng-if="edit" name="form">
-	<!-- button to update to make post -->
-	<!-- <input ng-repeat -->
-	<!-- <label>Category:</label> -->
-	<span ng-repeat="(key,value) in shirt">
-		<label>{{key}}</label>
-		<input ng-model="shirt[key]" type="text"></input></br>	
-	</span>
-</form>
+<div class="row">
+	<div class="col-sm-6">
+		IMAGE GOES HERE
+		<!-- TODO: Image on shirt.directive.html -->
+	</div>
+
+	<!-- the non-edit view state -->
+	<div ng-if="!edit" class="col-sm-6">
+		<div >
+			<h1>Name: {{ shirt.name }}</h1>
+			<p>Description: {{ shirt.description}}</p>
+			<p>Stock: {{ shirt.stock }} </p>
+			<p>Price: {{shirt.price}}</p>
+			<p>Categories: {{ shirt.categories}}</p>
+			
+			<!-- don't show order form for admin -->
+			<form ng-if="!isAdmin()">
+				<label for="shirt-quantity">Quantity</label>
+				<input type="text" id="shirt-quantity" ng-model='shirt.quantity'/>
+
+				<label for="shirt-size">Size</label>
+				<select id="shirt-size" ng-model='shirt.size'>
+					<option ng-repeat="item in stock" >{{item.size}}</option>
+				</select>
+				<!-- TODO: Stocks Model Updated, need to reflect here -->
+				<button class="btn" ng-click="addToCart()">Buy Shirt</button>
+			</form>
+		</div>
+	</div>
+
+	<!-- the edit state for admins -->
+	<div ng-if="edit" class="col-sm-6">
+		<form name="form">
+			<span ng-repeat="(key,value) in shirt">
+				<div class="form-group">
+					<label for="{{key}}">{{key}}</label>
+					<input id="{{key}}" class="form-control" ng-model="shirt[key]" type="text">
+				</div>	
+			</span>
+		</form>
+	</div>
+</div>
 
 
-<form ng-if="!isAdmin()">
-	Quantity<input type="text" ng-model='shirt.quantity'/>
 
-
-	Size
-	<select ng-model='shirt.size'>
-		<option ng-repeat="item in stock" >{{item.size}}</option>
-	</select>
-	<!-- TODO: Stocks Model Updated, need to reflect here -->
-	<button ng-click="addToCart()">Buy Shirt</button>
-</form>
 
 
 <br/>
