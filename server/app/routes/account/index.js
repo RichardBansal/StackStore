@@ -21,21 +21,18 @@ router.put('/edit', function(req, res, next) {
 
 	var user = req.body;
 
-	User.findByIdAndUpdate(user._id, user, function(err, success) {
-		if (err) return err;
+	User.findByIdAndUpdate(user._id, user).exec().then(fulfilled, rejected);
 
-		console.log(success);
-	});
+	function fulfilled(updateUser){
+		console.log(updateUser);
+		res.sendStatus(200);
+	}
 
-	// function fulfilled(updateUser){
-	// 	console.log(updateUser);
-	// }
+	function rejected(error){
+		console.error(error);
+		res.sendStatus(500);
+	}
 
-	// function rejected(error){
-	// 	console.error(error);
-	// }
-
-	res.sendStatus(200);
 });
 
 router.get('/', function(req,res,next){
