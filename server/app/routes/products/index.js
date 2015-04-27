@@ -19,6 +19,23 @@ router.get('/',function(req,res,next){
 	}
 });
 
+router.get("/:id/price",function(req,res,next){
+	console.log('hitting the right route, id',req.params.id);
+	
+	Product.findOne({"_id":req.params.id}).exec()
+		.then(foundProduct, rejected);
+
+	function foundProduct(product){
+		console.log('product found', product.price);
+		res.json(product.price);
+	}
+
+	function rejected(error){
+		console.log(error);
+		next(error);
+	}
+})
+
 router.get("/:id",function(req,res,next){
 	Product.findOne({"_id":req.params.id}).exec()
 		.then(foundProduct, rejected);
