@@ -1,5 +1,15 @@
-<span ng-repeat="review in reviews">
-	{{ review.stars }} <br/> 
-	{{ review.text }} <br/>
-	{{ user }}
-</span>
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Reviews</h2>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-sm-12" ng-repeat="review in reviews">
+		Stars: {{ review.stars }} | User: {{ user }}
+	</div>
+	<div class="col-sm-12" ng-repeat="review in reviews">
+		Review: {{ review.text }}
+	</div>
+</div>

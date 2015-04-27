@@ -17,8 +17,22 @@ router.post('/create', function(req, res, next){
 
 router.put('/edit', function(req, res, next) {
 	console.log("Edit account route!");
+	//console.log(req.body);
 
-	res.sendStatus(200);
+	var user = req.body;
+
+	User.findByIdAndUpdate(user._id, user).exec().then(fulfilled, rejected);
+
+	function fulfilled(updateUser){
+		console.log(updateUser);
+		res.sendStatus(200);
+	}
+
+	function rejected(error){
+		console.error(error);
+		res.sendStatus(500);
+	}
+
 });
 
 router.get('/', function(req,res,next){

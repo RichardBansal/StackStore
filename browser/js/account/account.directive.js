@@ -32,9 +32,8 @@ app.directive('accountDetails',function($http, UserFactory){
 					// console.log("USER!!!!!!!!");
 					// console.log(user);
 
-					UserFactory.updateUser(user._id, user).then(fulfilled, rejected);
 
-					function fullfulled(updatedUser) {
+					function fulfilled(updatedUser) {
 						if (updatedUser) {
 							scope.edit = !scope.edit;
 							scope.editAction = "Edit my info";
@@ -45,6 +44,7 @@ app.directive('accountDetails',function($http, UserFactory){
 						console.log("account.directive.js: user creation rejected! ", error);
 					}
 
+					UserFactory.updateUser(user._id, user).then(fulfilled, rejected);
 				}
 			};
 		}
