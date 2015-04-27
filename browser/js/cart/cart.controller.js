@@ -19,7 +19,7 @@ app.controller('CartController', function($scope, $window, CartFactory, $q){
 
 	$scope.completeOrder = function(){
 		console.log('cart',$scope.cart);
-		CartFactory.completeOrder($scope.cart).then(fulfilled, rejected)
+		CartFactory.completeOrder($scope.cart, $scope.total).then(fulfilled, rejected)
 
 		function fulfilled(response){
 			if(response) {

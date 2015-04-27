@@ -1,6 +1,6 @@
 app.factory('CartFactory', function($http, $q){
 	return{
-		completeOrder: function(order){
+		completeOrder: function(order, total){
 			// console.log('factory',order);
 			var productArr = [];
 
@@ -9,7 +9,7 @@ app.factory('CartFactory', function($http, $q){
 				var product = {};
 				for(var prop in item){
 				
-					if(prop !== "size" && prop !== "quantity"){
+					if(prop !== "size" && prop !== "quantity" && prop !== 'price'){
 						if(prop === "_id"){
 							product[prop] = item[prop];
 						}
@@ -20,13 +20,16 @@ app.factory('CartFactory', function($http, $q){
 
 				}
 				parentObj.product = product;
+				
 				productArr.push(parentObj);
 			});
 
 			order.products = productArr;
+			order.totalCost = total;
+			console.log("order",order);
 
-
-			return $http.post('/api/orders',order).then(fulfilled, rejected);
+			return $http.post('/api/orders',order);
+			// .then(fulfilled, rejected);
 
 			function fulfilled(response){
 				console.log(response);
@@ -42,6 +45,8 @@ app.factory('CartFactory', function($http, $q){
 			//ASK: Error Handling on Client
 			}
 		},
+
+
 		totalPrice: function(products){
 			var total = 0;
 			products.forEach(function(item){
