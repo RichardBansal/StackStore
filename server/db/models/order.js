@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Product = require('mongoose').model('User');
 
 var q = require('q');
 
@@ -17,7 +18,9 @@ var OrderSchema = new mongoose.Schema({
                                     ref: 'Product'
                                 },
                             quantity: Number,
-                            size: String
+                            size: String,
+                            //current price paid
+                            price: Number
                         }]
                 }
                 // required: true} //Issue with test
@@ -26,7 +29,9 @@ var OrderSchema = new mongoose.Schema({
 OrderSchema.methods.determineTotal = function(){
     var sum = 0;
     //total cost assuming order exists?!
+
     this.products.forEach(function(product){
+
         sum += product.price;
     });
     return sum;

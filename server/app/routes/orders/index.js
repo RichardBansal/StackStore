@@ -17,14 +17,31 @@ router.post('/',function(req,res,next){
 
 	Order.create(req.body).then(fulfilled, rejected);
 
-	function fulfilled(response){
-		console.log(response);
-		res.sendStatus(200);
+	function fulfilled(order){
+			res.sendStatus(200);
+	
+		console.log(order);
 	}
 	function rejected(error){
 		next(error);
 	}
+});
 
+router.get('/', function(req,res,next){
+	
+
+        //TODO: test multiple orders
+    Order.find({}).populate('products.product').exec().then(fulfilled, rejected);
+
+    function fulfilled(orders){
+    	console.log(orders);
+        res.status(200).json(orders);
+    }
+
+    function rejected(error){
+        done(error);
+    }
+    
 });
 
 module.exports = router;
