@@ -20,6 +20,7 @@ app.controller('CartController', function($scope, $window, CartFactory){
 		function fulfilled(response){
 			if(response) {
 				console.log('order made');
+				$window.localStorage.cart = JSON.stringify([]);
 			}
 			else {
 				console.log('failure');
@@ -31,5 +32,15 @@ app.controller('CartController', function($scope, $window, CartFactory){
 			console.log(error);
 		//ASK: Error Handling on Client
 		}
-	}
+	};
+
+	$scope.editOrder = function(quantity, index){
+			$scope.edit = !$scope.edit;
+			console.log(quantity, index);
+		
+		if($scope.edit === false){
+			$scope.cart.products[index].quantity = quantity;
+			$window.localStorage.cart = JSON.stringify($scope.cart.products);
+		}
+	};
 });

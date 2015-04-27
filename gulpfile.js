@@ -107,10 +107,14 @@ gulp.task('seedDB', function () {
 
     var orders = [
         {
+            addressShipping: "1234 AVE",
+            addressBilling: "1234 AVE",
             purchaseDate: "2015-04-20",
             status: "unfullfilled"
         },
         {
+            addressShipping: "2345 AVE",
+            addressBilling: "2345 AVE",
             purchaseDate: "2015-04-16",
             status: "fullfilled"
         }
