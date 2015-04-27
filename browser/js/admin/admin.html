@@ -10,7 +10,7 @@ View Order Status
 <h1>Orders:</h1>
 <h2>Order ID Date Total Cost Status</h2>
 <div ng-repeat="order in orders">
-	<span ng-click"viewOrder()">{{order._id}}</span>
+	<span ng-click="viewOrder(order['_id'])">{{order._id}}</span>
 	{{order.purchaseDate | date}}
 	{{order.totalCost}}
 	{{order.status}}
