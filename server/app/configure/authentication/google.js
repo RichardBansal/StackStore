@@ -9,6 +9,8 @@ module.exports = function (app) {
 
     var googleConfig = app.getValue('env').GOOGLE;
 
+    console.log('google config: ', googleConfig)
+
     var googleCredentials = {
         clientID: googleConfig.clientID,
         clientSecret: googleConfig.clientSecret,
@@ -16,7 +18,7 @@ module.exports = function (app) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
+        console.log(profile.displayName, profile.emails[0].value);
         UserModel.findOne({ 'google.id': profile.id }, function (err, user) {
 
             if (err) return done(err);
@@ -27,7 +29,9 @@ module.exports = function (app) {
                 UserModel.create({
                     google: {
                         id: profile.id
-                    }
+                    },
+                    name: profile.displayName,
+                    email:profile.emails[0].value
                 }).then(function (user) {
                     done(null, user);
                 }, function (err) {

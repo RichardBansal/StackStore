@@ -27,7 +27,8 @@ module.exports = function (app) {
                 UserModel.create({
                     facebook: {
                         id: profile.id
-                    }
+                    },
+                    name:profile.displayName
                 }).then(function (user) {
                     done(null, user);
                 }, function (err) {
@@ -48,7 +49,7 @@ module.exports = function (app) {
         
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function (req, res) {
-            console.log(res);
+            
             res.redirect('/');
         });
 

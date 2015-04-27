@@ -1,4 +1,4 @@
-app.directive('createAccount', function($http){
+app.directive('createAccount', function($http, $window){
 	return {
 		restrict: 'E',
 		templateUrl: 'js/create-account/form.html',
@@ -17,6 +17,10 @@ app.directive('createAccount', function($http){
 				//TODO: what happens after users create an account
 				$http.post('/api/account/create', scope.user);
 			};
+
+			scope.goToGoogle = function(){
+				$window.location = '/auth/google'; 
+			}
 		}
 	};
 });
