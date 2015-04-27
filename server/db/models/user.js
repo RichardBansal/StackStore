@@ -33,8 +33,8 @@ var UserSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        validate: UserEmailValidator,
-        required: true,
+        // validate: UserEmailValidator,
+        // required: true,
         unique: true
     },
     password: {
