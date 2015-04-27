@@ -18,7 +18,7 @@ module.exports = function (app) {
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
 
         UserModel.findOne({ 'facebook.id': profile.id }, function (err, user) {
-
+            console.log(profile);
             if (err) return done(err);
 
             if (user) {
@@ -27,7 +27,8 @@ module.exports = function (app) {
                 UserModel.create({
                     facebook: {
                         id: profile.id
-                    }
+                    },
+                    name:profile.displayName
                 }).then(function (user) {
                     done(null, user);
                 }, function (err) {
@@ -45,8 +46,10 @@ module.exports = function (app) {
     app.get('/auth/facebook', passport.authenticate('facebook'));
 
     app.get('/auth/facebook/callback',
+        
         passport.authenticate('facebook', { failureRedirect: '/login' }),
         function (req, res) {
+            
             res.redirect('/');
         });
 
