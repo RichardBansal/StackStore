@@ -56,27 +56,21 @@ app.factory('CartFactory', function($http, $q){
 			products.forEach(function(product){
 				productsPromiseArr.push($http.get('/api/products/'+product._id+'/price'));
 			});
-			//returns an array of promises that resolve to product prices, ordered array
-			return productsPromiseArr;
-			// $q.all(productsPromiseArr);
 
-			// $http.get('/api/products/'+products[0]._id+'/price').then(fulfilled, rejected);
+			return productsPromiseArr;
 
 			function fulfilled(prices){
-				//price array
+
 				console.log('prices',prices);
 				products.forEach(function(product, index){
 					product.price = prices[index].data;
 				});
-				// console.log('got prices', products);
-				// console.log('got price',price);
 				console.log(products);
 				return products;
 			}
 
 			function rejected(error){
 				console.log(error);
-				//ASK: Error Handling on Client
 			}
 		}
 	};
