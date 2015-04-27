@@ -4,14 +4,35 @@ var User = require('mongoose').model('User');
 var Order = require('mongoose').model('Order');
 
 router.post('/create', function(req, res, next){
+	console.log("Create account route!");
 	User.create(req.body).then(fulfilled, rejected);
 	function fulfilled(user){
-		console.log(user);
+		//console.log(user);
 	}
 
 	function rejected(error){
-		console.log(error);
+		//console.log(error);
 	}
+});
+
+router.put('/edit', function(req, res, next) {
+	console.log("Edit account route!");
+	//console.log(req.body);
+
+	var user = req.body;
+
+	User.findByIdAndUpdate(user._id, user).exec().then(fulfilled, rejected);
+
+	function fulfilled(updateUser){
+		console.log(updateUser);
+		res.sendStatus(200);
+	}
+
+	function rejected(error){
+		console.error(error);
+		res.sendStatus(500);
+	}
+
 });
 
 router.get('/', function(req,res,next){

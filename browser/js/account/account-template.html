@@ -1,25 +1,46 @@
-Your Email Is:{{user.email}}
-<h1>Email: {{user.email}}</h1>
-<h1>Billing Address: {{user.addressBilling}}</h1>
-<h1>Shipping Address: {{user.addressShipping}}</h1>
-<h1>Name: {{user.name}}</h1>
-<h1>Phone Number: {{user.phoneNumber}}</h1>
+<div class="row">
+	<div class="col-sm-12">
+		<div ng-if="!edit">
+			<h1>My info</h1>
+			<p>Email: {{user.email}}</p>
+			<p>Billing Address: {{user.addressBilling}}</p>
+			<p>Shipping Address: {{user.addressShipping}}</p>
+			<p>Name: {{user.name}}</p>
+			<p>Phone Number: {{user.phoneNumber}}</p>
+		</div>
+		<div ng-if="edit">
+			<h1>Edit my info</h1>
+			<form name="edit-account-form" id="edit-account-form">
+				<div class="form-group" ng-repeat="(key,value) in user">
+					<label for="{{ key }}">{{ key }}</label>
+					<input id="{{ key }}" class="form-control" ng-model="user[key]" type="text">
+				</div>
+			</form>
+		</div>
+
+		<button class="btn" ng-click="makeEditable()">{{ editAction }}</button>
+	</div>
+</div>
+
 <hr>
 
-<div ng-repeat="order in orders">
-	<h1>Order #: {{order._id}}</h1>
-	<h2>Purchase Date: {{order.purchaseDate | date}} </h2>
-	<h2>Order Status: {{order.status}} </h2>
-	<h2>Total Cost: {{order.totalCost}}</h2>
-	<div ng-repeat="product in order.products">
-	<h2>Items in Order: </h2>
-			<img ng-src = "{{product.product.imageUrl}}"/>
-			<h3>Item Name:{{product.product.name}}</h3>
-			<h3>Quantity:{{product.quantity}}</h3>
-			<h3>Price:{{product.product.price}}</h3>
-
+<div class="row">
+	<div class="col-sm-12">
+		<h2>My orders</h2>
 	</div>
 
-
-
+	<div class="col-sm-12" ng-repeat="order in orders">
+		<h3>Order #: {{order._id}}</h3>
+		<p>Purchase Date: {{order.purchaseDate | date}} </p>
+		<p>Order Status: {{order.status}} </p>
+		<p>Total Cost: {{order.totalCost}}</p>
+		<div ng-repeat="product in order.products">
+			<p>Items in Order: </p>
+			<img ng-src="{{product.product.imageUrl}}"/>
+			<p>Item Name:{{product.product.name}}</p>
+			<p>Quantity:{{product.quantity}}</p>
+			<p>Price:{{product.product.price}}</p>
+		</div>
+	</div>
 </div>
+

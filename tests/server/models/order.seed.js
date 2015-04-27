@@ -78,6 +78,9 @@ var users = [
     //     }
     //];
 
+// function saveAsync()
+
+// method
 
 function seedFn(){
     
@@ -106,23 +109,31 @@ function seedFn(){
 	        return q.all([
 	            Users.findOne({name: "Anne B."}).exec().then(function(user) {
 	                user.orders.push(orders[0]);
-	                user.save();
-	                return user;
+	                // user.save();
+	                // return user;
+	                return user.saveAsync();
 	            }),
 	            Users.findOne({name: "Bob J."}).exec().then(function(user) {
 	                user.orders.push(orders[1]);
-	                user.save();
-	                return user;
+	                // return Q.ninvoke(redisClient, "get", "user:1:id");
+
+	                // user.save();
+	                // return q.ninvoke.save(user);
+	                // return user;
+	                return user.saveAsync();
 	            }),
 	            Orders.findOne({purchaseDate: "2015-04-20"}).exec().then(function(order) {
 	                order.products.push({quantity: 1, product:products[0],price:products[0].price});
-	                order.save();
-	                return order;
+	                // order.save();
+	                // return q.ninvoke.save(order);
+	                return order.saveAsync();
 	            }),
 	            Orders.findOne({purchaseDate: "2015-04-16"}).exec().then(function(order) {
 	                order.products.push({quantity: 1, product:products[1],price:products[1].price});
-	                order.save();
-	                return order;
+	                // order.save();
+	                // return order;
+	                // return q.ninvoke.save(order);
+	                return order.saveAsync();
 	            }),
 	            // Product.findOne({name: "FSA T"}).exec().then(function(product) {
 	            //     product.stock.push(stock[0]);

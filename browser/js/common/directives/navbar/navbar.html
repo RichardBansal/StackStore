@@ -4,7 +4,16 @@
             <fullstack-logo></fullstack-logo>
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+             <li ng-repeat="item in standardItems">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>            
+            <li ng-repeat="item in loggedOutItems" ng-show="!isLoggedIn()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li ng-repeat="item in loggedInItems" ng-show="isLoggedIn() && !isAdmin()">
+                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+            </li>
+            <li ng-repeat="item in adminItems" ng-show="isLoggedIn() && isAdmin()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>

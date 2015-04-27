@@ -67,6 +67,10 @@
             return !!Session.user;
         };
 
+        this.isAdmin = function() {
+            return Session.user.accountType === "admin" && this.isAuthenticated();
+        };
+
         this.getLoggedInUser = function () {
 
             // If an authenticated session exists, we

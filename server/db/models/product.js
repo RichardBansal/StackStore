@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 require("../../../server/db/models/review");
 var Review = require('mongoose').model('Review');
+var q = require('q');
 
 var stockSchema = new mongoose.Schema({
 	size: { type: String, required: true, enum: ['XS', 'S', 'M', 'L', 'XL']},
@@ -54,5 +55,9 @@ schema.methods.findReviews = function findReviews(){
 // 									}
 // 								]
 // 					};
+
+schema.methods.saveAsync = function () {
+    return q.ninvoke(this,'save');
+};
 
 mongoose.model("Product", schema);
