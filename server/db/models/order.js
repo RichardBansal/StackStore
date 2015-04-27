@@ -10,7 +10,7 @@ var OrderSchema = new mongoose.Schema({
     addressShipping: {type:String,required:true},
     purchaseDate: {type: Date, default: Date.now, required: true},
     totalCost: {type: Number, min:0, default: 0, required: true},
-    status: {type: String, default: "Open", required:true},
+    status: {type: String, default: "Created", required:true},
     products: { type:   [{
                             product: 
                                 {

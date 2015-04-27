@@ -43,4 +43,14 @@ router.get('/', function(req,res,next){
     
 });
 
+router.put('/',function(req,res,next){
+	console.log(req.body);
+
+	Order.findByIdAndUpdate({_id:req.body.id},{status:req.body.status}).exec().then(fulfilled);
+
+	function fulfilled(){
+		res.sendStatus(200);
+	}
+})
+
 module.exports = router;
