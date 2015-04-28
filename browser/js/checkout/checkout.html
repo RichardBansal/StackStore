@@ -3,13 +3,11 @@
 	<cart></cart>
 	<button ui-sref='createAccount'>Create Account</button> 
 	<form novalidate class="order-form">
-	    <!-- Name: <input type="text" ng-model="user.name" /><br/> -->
-	<!--     E-mail: <input type="email" ng-model="user.email" /><br/> -->
+	    Name: <input type="text" ng-model="user.name" /><br/>
+	    E-mail: <input type="email" ng-model="user.email" /><br/>
 	    Billing Address: <input type="text" ng-model="cart.addressBilling"/><br/>
 	    Shipping Address: <input type="text" ng-model="cart.addressShipping"/><br/>
-	<!--     Phone Number: <input type="text" ng-model="user.phoneNumber" /><br/>
-	    Password: <input type="password" ng-model="user.password" /><br/> -->
-	    <!-- <input type="button" ng-click="" value="Reset" /> -->
+	    Phone Number: <input type="text" ng-model="user.phoneNumber" /><br/>
 	    <button ng-click="completeOrder()">Order</button>
 	</form>
 
