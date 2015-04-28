@@ -9,7 +9,10 @@
 		<button ng-model='item' ng-click="removeItem(item)">Remove</button> <br/>
 
 	-------<br/>
-
 </span>
 
-<span>Total:{{total | currency}}</span></br>
+<span ng-hide="total === 0">Total:{{total | currency}}</span></br>
+<div ng-show="total === 0">
+	<span>Your shopping cart is empty.</span>
+	<img ng-src="http://media1.giphy.com/media/EdW1pjRlyMTCM/giphy.gif" />
+</div>

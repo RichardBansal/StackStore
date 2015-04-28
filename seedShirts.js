@@ -32,7 +32,7 @@ var products = [
         description: "Zena Styling.",
         price: 7999,
         category: ["School shirts", "Tshirts"],
-        imageUrl: "https://lh5.googleusercontent.com/tkXm8nOuF_EsmPENMKfOUInLWqS392ae4HFXJSVHl_R2oY0QshhJIJsjMeV2ph8Vs0GlkQ=w1137-h513",
+        imageUrl: "https://lh5.googleusercontent.com/g_T_JOGCysXOIdO2J5qpZnEkDNO7WqSK5vNoCJI07to_fHQy1Qf1rc4MEqnu4GiARXTAks5pt3MtjXg",
         stock: generateStock()
     },
     {
@@ -40,7 +40,7 @@ var products = [
         description: "The Office.",
         price: 3799,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh6.googleusercontent.com/2oM4-caD9-aHhMkTrXfbJxGE64IajR-XLtaMP8q5k0ncdFsLvxR2w1FBygDv4UKh4JvJkw=w1137-h513",
+        imageUrl: "https://lh4.googleusercontent.com/GxFI-nTzskkYk2S1VhdB2xqV7_BsJ1jYsvA7qJppTW-M5Rzdph7fMRehfdxwFKattzFW40PDZzzjFXQ",
         stock: generateStock()
     },
     {
