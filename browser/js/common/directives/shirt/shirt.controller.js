@@ -37,7 +37,7 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		$scope.stock = shirt.data.product.stock;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
-		console.log($scope.stock);
+		// console.log($scope.stock);
 
 
 		$scope.edit = false;
