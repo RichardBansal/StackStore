@@ -42,12 +42,20 @@
 			</form>
 
 			<p><b>Total Cost: </b>{{currentOrder.totalCost}}</p>
-			<div ng-repeat="product in currentOrder.products">
-				<h3>Items in Order</h3>
-				<img ng-src="{{product.product.imageUrl}}"/>
-				<p><b>Item Name: </b>{{product.product.name}}</p>
-				<p><b>Quantity: </b>{{product.quantity}}</p>
-				<p><b>Price: </b>{{product.product.price}}</p>			
+			<div ng-repeat="product in currentOrder.products" class="row">
+				<div class="col-sm-12">
+					<h3>Items in Order</h3>
+				</div>
+				
+				<div class="col-sm-3">
+					<img ng-src="{{product.product.imageUrl}}"/>
+				</div>
+				
+				<div class="col-sm-9">
+					<p><b>Item Name: </b>{{product.product.name}}</p>
+					<p><b>Quantity: </b>{{product.quantity}}</p>
+					<p><b>Price: </b>{{product.product.price}}</p>			
+				</div>
 			</div>
 		</div>
 	</div>

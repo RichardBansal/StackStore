@@ -1,6 +1,5 @@
 app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 	function fulfilled(orders){
-		// console.log(orders.data);
 		$scope.orders = orders.data;
 	}
 	function rejected(err){
@@ -10,17 +9,26 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 
 
 	function userFulfilled(users){
-		console.log(users.data);
 		$scope.users = users.data;
 	}
 	function userRejected(err){
 		console.log(err);
 	}
-	UserFactory.listUsers().then(userFulfilled, userRejected);
+	UserFactory.listUsers().then(userFulfilled, userRejected);	
+
+
+	function productsFulfilled(products){
+		// $scope.users = users.data;
+		console.log(products);
+		$scope.products = products.data;
+	}
+	function productsRejected(err){
+		console.log(err);
+	}
+	AdminFactory.listProducts().then(productsFulfilled, productsRejected);
 
 
 	$scope.toggleAccountType = function(user) {
-		//console.log(user);
 
 		if (user.accountType === "user") {
 			user.accountType = "admin";
@@ -56,18 +64,37 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 		}
 	};
 
+
+	$scope.viewingOrder = false;
 	$scope.viewOrder = function(orderId){
+		$scope.viewingOrder = !$scope.viewingOrder;
+		console.log($scope.viewingOrder);
+		
+		if ($scope.viewingOrder) {
+			AdminFactory.getOrders(orderId).then(fulfilled, rejected);
+			function fulfilled(order){
+				// console.log("individual order", order);
+				$scope.currentOrder = order.data[0];
+				console.log('currentOrder',$scope.currentOrder);
+				// $scope.showOrder($scope.currentOrder._id);
+				$scope.activeOrderId = $scope.currentOrder._id;
 
-		console.log("controller", orderId);
-		AdminFactory.getOrders(orderId).then(fulfilled, rejected);
-		function fulfilled(order){
-			// console.log("individual order", order);
-			$scope.currentOrder = order.data[0];
-			console.log('currentOrder',$scope.currentOrder);
-			// $scope.showOrder($scope.currentOrder._id);
-			$scope.activeOrderId = $scope.currentOrder._id;
-
-			// console.log($scope.activeOrder === orderId);
+				//console.log($scope.activeOrder === orderId);
+			}
+		}
+		else {
+			$scope.currentOrder = null;
+			$scope.activeOrderId = null;
 		}
 	};
+
+	$scope.toggleProductVisibility = function(product) {
+		// TODO: needs a visibility property on the model
+		// TODO: Main shirts page needs to filter based on availabity
+		// TODO: Individual shirt URL routes need filters based on shirt availability
+		console.log(product.visible);
+
+		//$scope.product.visible = !product.visible;
+	};
+
 });
