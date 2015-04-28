@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1>Manage products</h1>
+	</div>
+</div>
+<div class="row" ng-repeat="product in products">
+	<div class="col-sm-12">
+		<h2>Product ID: {{ product._id }}</h2>
+	</div>
+	<div class="col-sm-2">
+		<img src="{{ product.imageUrl }}">
+	</div>
+	<div class="col-sm-8">
+		<p><b>Name: </b>{{ product.name }}</p>
+		<p><b>Description: </b>{{ product.description }}</p>
+		<p><b>Category: </b>{{ product.category }}</p>
+		<p><b>Price: </b>{{ product.price }}</p>
+		<p><b>Stock: </b>{{ product.stock }}</p>
+	</div>
+	<div class="col-sm-2">
+		<button class="btn btn-primary">Edit product</button>
+		<button class="btn btn-warning">Toggle visibility</button>
+	</div>
+	<div class="col-sm-12">
+		<hr>
+	</div>
+</div>

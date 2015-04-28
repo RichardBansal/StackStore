@@ -20,5 +20,10 @@ app.config(function ($stateProvider){
 			controller: "AdminController",
 			url:'/admin/manage-orders',
 			templateUrl: '/js/admin/manage-orders/manage-orders.html'
+		})
+		.state('admin.manage-products', {
+			controller: "AdminController",
+			url:'/admin/manage-products',
+			templateUrl: '/js/admin/manage-products/manage-products.html'
 		});
 });

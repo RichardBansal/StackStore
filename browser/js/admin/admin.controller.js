@@ -14,7 +14,18 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 	function userRejected(err){
 		console.log(err);
 	}
-	UserFactory.listUsers().then(userFulfilled, userRejected);
+	UserFactory.listUsers().then(userFulfilled, userRejected);	
+
+
+	function productsFulfilled(products){
+		// $scope.users = users.data;
+		console.log(products);
+		$scope.products = products.data;
+	}
+	function productsRejected(err){
+		console.log(err);
+	}
+	AdminFactory.listProducts().then(productsFulfilled, productsRejected);
 
 
 	$scope.toggleAccountType = function(user) {
@@ -76,4 +87,5 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 			$scope.activeOrderId = null;
 		}
 	};
+
 });

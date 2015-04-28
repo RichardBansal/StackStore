@@ -12,9 +12,13 @@ app.factory('AdminFactory', function($http){
 			var body = {
 				id: id,
 				status: status
-			}
+			};
 
 			return $http.put('/api/orders',body);
+		},
+
+		listProducts: function() {
+			return $http.get('/api/products');
 		}
 	};
 });
