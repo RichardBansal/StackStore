@@ -37,6 +37,11 @@ app.factory('UserFactory', function($http) {
 			}
 
 			return $http.get('/api/account/all').then(fulfilled, rejected);
+		},
+
+		toggleAccountType: function(user) {
+			console.log("User factory", user);
+			return $http.put('/edit', user).then(fulfilled, rejected);
 		}
 	};
 });

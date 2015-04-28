@@ -19,6 +19,22 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 	UserFactory.listUsers().then(userFulfilled, userRejected);
 
 
+	$scope.toggleAccountType = function(user) {
+		//console.log(user);
+
+		if (user.accountType === "user") {
+			user.accountType = "admin";
+		}
+		else if ( user.accountType === "admin") {
+			user.accountType = "user";
+		}
+
+		//console.log(user);
+
+		UserFactory.updateUser(user._id, user).then(fulfilled, rejected);
+	};
+
+
 	// $scope.viewOrderClicked = false;
 	$scope.activeOrderId = false;
 	// $scope.showOrder = function(id){
@@ -38,7 +54,6 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 				console.log('status saved');	
 			}
 		}
-		//
 	};
 
 	$scope.viewOrder = function(orderId){

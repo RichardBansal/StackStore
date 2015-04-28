@@ -9,7 +9,9 @@ View Order Status
 <button ui-sref="createProduct">Create Shirt</button>
 <h1>Registered users</h1>
 <div ng-repeat="user in users">
-	{{user.name}} | {{user.accountType}} <button class="btn btn-primary">Update account type</button>
+	<span>{{user.name}}</span> | 
+	<span>{{user.accountType}}</span> 
+	<button class="btn btn-primary" ng-click="toggleAccountType(user)">Toggle account type</button>
 </div>
 
 <h1>Orders</h1>
