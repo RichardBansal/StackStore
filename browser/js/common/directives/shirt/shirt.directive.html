@@ -9,8 +9,7 @@
 
 <div class="row">
 	<div class="col-sm-6">
-		IMAGE GOES HERE
-		<!-- TODO: Image on shirt.directive.html -->
+		<img ng-src="{{shirt.imageUrl}}"/>
 	</div>
 
 	<!-- the non-edit view state -->
@@ -18,9 +17,12 @@
 		<div>
 			<h1>Name: {{ shirt.name }}</h1>
 			<p>Description: {{ shirt.description}}</p>
-			<p>Stock: {{ shirt.stock }} </p>
+			<p>Stock: </p>
+			<p ng-repeat='stock in shirt.stock'>{{stock.size}}: {{stock.quantity}} </p>
 			<p>Price: {{shirt.price}}</p>
-			<p>Categories: {{ shirt.categories}}</p>
+			<p>Categories: 
+				<span ng-repeat='category in shirt.category'>{{category}} </span>
+			</p>
 			
 			<!-- don't show order form for admin -->
 			<form ng-if="!isAdmin()">

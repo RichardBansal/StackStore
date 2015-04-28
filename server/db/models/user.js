@@ -26,15 +26,15 @@ var UserSchema = new mongoose.Schema({
         type: String
     },
     accountType: {
-        type: String
-        //required: true,
-        //enum: ["admin", "shopper"],
-        //default: "shopper"
+        type: String,
+        required: true,
+        enum: ["admin", "user"],
+        default: "user"
     },
     email: {
         type: String,
-        validate: UserEmailValidator,
-        required: true,
+        // validate: UserEmailValidator,
+        // required: true,
         unique: true
     },
     password: {

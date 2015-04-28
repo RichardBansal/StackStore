@@ -17,6 +17,7 @@ app.factory('ShirtFactory', function($http){
 
 			function fulfilled(shirt){
 				// console.log('shirt+reviews',shirt);
+				console.log(shirt);
 				return shirt;
 			}
 

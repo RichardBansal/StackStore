@@ -1,4 +1,4 @@
-app.directive('accountDetails',function($http, UserFactory){
+app.directive('accountDetails',function($http, UserFactory, ShirtFactory){
 	return{
 		restrict: 'E',
 		templateUrl: 'js/account/account-template.html',

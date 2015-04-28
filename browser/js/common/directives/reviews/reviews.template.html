@@ -7,9 +7,7 @@
 
 <div class="row">
 	<div class="col-sm-12" ng-repeat="review in reviews">
-		Stars: {{ review.stars }} | User: {{ user }}
-	</div>
-	<div class="col-sm-12" ng-repeat="review in reviews">
-		Review: {{ review.text }}
+		Stars: {{ review.stars }} --
+		{{ user[$index].name }} : {{ review.text }} <br/>
 	</div>
 </div>

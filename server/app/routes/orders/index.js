@@ -15,16 +15,47 @@ router.post('/',function(req,res,next){
 
 	console.log('req.body',req.body);
 
+	res.sendStatus(200);
+
 	Order.create(req.body).then(fulfilled, rejected);
 
-	function fulfilled(response){
-		console.log(response);
-		res.sendStatus(200);
+	function fulfilled(order){
+		if(req.user){
+			// console.log(order._id);
+			req.user.orders.push(order._id);
+			req.user.save();
+		}
+			res.sendStatus(200);
 	}
 	function rejected(error){
 		next(error);
 	}
-
 });
+
+router.get('/', function(req,res,next){
+		var modelParams = req.query.orderId ? {_id: req.query.orderId} : {};
+        //TODO: test multiple orders
+    Order.find(modelParams).populate('products.product').exec().then(fulfilled, rejected);
+
+    function fulfilled(orders){
+    	// console.log(orders);
+        res.status(200).json(orders);
+    }
+
+    function rejected(error){
+        done(error);
+    }
+    
+});
+
+router.put('/',function(req,res,next){
+	console.log(req.body);
+
+	Order.findByIdAndUpdate({_id:req.body.id},{status:req.body.status}).exec().then(fulfilled);
+
+	function fulfilled(){
+		res.sendStatus(200);
+	}
+})
 
 module.exports = router;
