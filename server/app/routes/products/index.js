@@ -106,7 +106,7 @@ router.get("/:id/review", function(req,res,next){
 	Product.findOne({'_id':req.params.id}).exec().then(foundProduct)
 
 	function foundProduct(product){
-		// console.log(product);
+		console.log(product);
 		// reviewsPromisesArr = []
 		// product.reviews.forEach(function(review){
 		// 	reviewPromisesArr.push(Review.findOne({'_id':review}).exec())
@@ -120,7 +120,7 @@ router.get("/:id/review", function(req,res,next){
 			reviews.forEach(function(review){
 				console.log(review.user);
 				if(review.user = req.user._id){
-					// console.log('found review for user!!');d
+					console.log('found review for user!!');
 					res.json(review);
 				}
 				
