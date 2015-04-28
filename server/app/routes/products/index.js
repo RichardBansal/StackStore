@@ -55,9 +55,27 @@ router.get("/:id",function(req,res,next){
 				)
 				.then(foundUser,rejected);
 
-			function foundUser(user){
-				console.log(user);
-				res.json({user:user, product:product, reviews:reviews});
+			function foundUser(users){
+
+				// console.log(users);
+
+				var updatedUserArr = [];
+
+
+				//This is created to only provide only shareable user data
+				users.forEach(function(user){
+					updatedUserArr.push({
+						name: user.name,
+						addressBilling: user.addressBilling,
+						addressShipping: user.addressShipping,
+				 		phoneNumber: user.phoneNumber,
+				 		email: user.email, 
+				 		accountType: user.accountType
+			 		});
+				});
+
+				// console.log(updatedUserArr);
+				res.json({user:updatedUserArr, product:product, reviews:reviews});
 			}
 		}
 	}
@@ -80,6 +98,36 @@ router.put("/edit/:id", function (req,res,next){
 	function rejected(){
 		console.log(error);
 		next(error);
+	}
+});
+
+router.get("/:id/review", function(req,res,next){
+	// console.log(req.params.id)
+	Product.findOne({'_id':req.params.id}).exec().then(foundProduct)
+
+	function foundProduct(product){
+		// console.log(product);
+		// reviewsPromisesArr = []
+		// product.reviews.forEach(function(review){
+		// 	reviewPromisesArr.push(Review.findOne({'_id':review}).exec())
+		// });
+
+		q.all(product.findReviews())
+			.then(foundReviews);
+
+		function foundReviews(reviews){
+			// console.log(reviews);
+			reviews.forEach(function(review){
+				console.log(review.user);
+				if(review.user = req.user._id){
+					// console.log('found review for user!!');d
+					res.json(review);
+				}
+				
+			})
+		}
+
+		//TODO: Return the first review found for that user (assume user has one review)
 	}
 });
 
