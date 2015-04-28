@@ -1,4 +1,4 @@
-app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFactory, AuthService){
+app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFactory, AuthService, $state){
 
 	ShirtFactory.getShirt($stateParams.id).then(fulfilled,rejected);
 
@@ -22,6 +22,7 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 			});
 			if(!copyExists) currentCart.push(shirtToAdd);
 			$window.localStorage.cart = JSON.stringify(currentCart);
+			$state.go('cart');
 		}
 
 	
