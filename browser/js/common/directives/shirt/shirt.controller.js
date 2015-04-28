@@ -11,8 +11,18 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		var shirtToAdd = ShirtFactory.formatShirt($scope.shirt);
 		
 		var currentCart = JSON.parse($window.localStorage.cart);
+		var copy = false;
+		
+		
+
 		if(shirtToAdd.size && shirtToAdd.quantity){
-			currentCart.push(shirtToAdd);
+			currentCart.forEach(function(item){
+				if(item._id === shirtToAdd._id && item.size === shirtToAdd.size){
+					copy = true;
+					item.quantity =  parseInt(item.quantity) + parseInt(shirtToAdd.quantity);
+				}
+			});
+			if(!copy) currentCart.push(shirtToAdd);
 			$window.localStorage.cart = JSON.stringify(currentCart);
 		}
 
