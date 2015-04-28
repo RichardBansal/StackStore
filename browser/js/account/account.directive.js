@@ -10,7 +10,7 @@ app.directive('accountDetails',function($http, UserFactory){
 			//TODO: Cleanup to remove only email from being sent
 			//TODO: Place $http req in factory (general clean-up)
 			function fulfilled(userInfo){
-				// console.log(userInfo.data);
+				console.log(userInfo.data);
 				scope.user = userInfo.data.user;
 				scope.orders = userInfo.data.orders;
 			}
