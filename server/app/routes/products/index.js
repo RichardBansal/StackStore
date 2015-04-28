@@ -56,8 +56,8 @@ router.get("/:id",function(req,res,next){
 				.then(foundUser,rejected);
 
 			function foundUser(user){
-				// console.log();
-				res.json({user:user[0].name, product:product, reviews:reviews});
+				console.log(user);
+				res.json({user:user, product:product, reviews:reviews});
 			}
 		}
 	}
@@ -81,6 +81,34 @@ router.put("/edit/:id", function (req,res,next){
 		console.log(error);
 		next(error);
 	}
+});
+
+router.post("/review", function(req,res,next){
+	console.log(req.user,req.body);
+
+	var review = {
+		stars: req.body.reviewObj.stars,
+		text: req.body.reviewObj.text,
+		user: req.user
+	};
+	
+	Review.create(review).then(fulfilled, rejected);
+
+	function fulfilled(review){
+		Product.findOne({'_id':req.body.product.id}, function(err,product){
+			product.reviews.push(review);
+			product.saveAsync().then(function(response){
+				console.log('saved',response);
+				res.sendStatus(200);
+			});
+		});
+	}
+
+	function rejected(error){
+		console.log(error);
+		next(error);
+	}
+
 });
 
 router.post("/",function(req,res,next){
