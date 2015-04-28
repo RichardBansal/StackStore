@@ -56,7 +56,7 @@ app.factory('CartFactory', function($http, $q){
 		},
 		//TODO: Function is not working
 		getCurrentPrice: function(products){
-			console.log('products',products);
+			// console.log('products',products);
 			var productsPromiseArr = [];
 			products.forEach(function(product){
 				productsPromiseArr.push($http.get('/api/products/'+product._id+'/price'));

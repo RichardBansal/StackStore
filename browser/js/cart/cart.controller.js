@@ -2,11 +2,11 @@ app.controller('CartController', function($scope, $window, CartFactory, $q){
 	$scope.cart = {};
 	var currentCart = JSON.parse($window.localStorage.cart);
 
-	$q.all(CartFactory.getCurrentPrice(currentCart)).then(latestPrices)
+	$q.all(CartFactory.getCurrentPrice(currentCart)).then(latestPrices);
 
 
 	function latestPrices(prices){
-		console.log("updatedProducts");
+		// console.log("updatedProducts");
 
 		currentCart.forEach(function(product, index){
 			product.price = prices[index].data;
@@ -44,5 +44,12 @@ app.controller('CartController', function($scope, $window, CartFactory, $q){
 			$scope.total = CartFactory.totalPrice($scope.cart.products);
 			$window.localStorage.cart = JSON.stringify($scope.cart.products);
 		}
+	};
+
+	$scope.removeItem = function(item){
+		// console.log(item);
+		currentCart.splice(currentCart.indexOf(item), 1);
+		$window.localStorage.cart = JSON.stringify(currentCart);
+		$scope.total = CartFactory.totalPrice($scope.cart.products);
 	};
 });
