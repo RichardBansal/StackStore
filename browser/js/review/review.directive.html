@@ -1,7 +1,5 @@
 <!--  -->
-<!-- <form> -->
-	<!-- <label>Rating:</label> <select ng-model='review.stars'> -->
-<form ng-hide="custom">
+<form>
 	<select ng-model='review.stars'>
 	<!-- Created -> Processing, Processing -> Cancelled, Completed --> 
 		<option> 0 </option>
@@ -11,17 +9,6 @@
 		<option> 4 </option>
 		<option> 5 </option>
 	</select>
-	<label>Review: </label> <input type="text" ng-model='review.text'/><br>
-	<button ng-click="saveReview()" ui-sref="shirt({ id: product})">Leave a Review</button>
-
-<!-- //TODO: -->
-
-	<!-- </select> -->
-	<!-- <input type="text" ng-model='review.text'/> -->
-	<!-- <button ng-click="saveReview()">Leave a Review</button> -->
-<!-- </form> -->
+	<input type="text" ng-model='review.text'/>
+	<button ng-click="saveReview()">Leave a Review</button>
 </form>
-<span ng-hide="!custom">
-	Stars: {{review.stars}}  <br/>
-	Review: {{review.text}}
-</span>

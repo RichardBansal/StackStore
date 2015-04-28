@@ -1,39 +1,42 @@
-app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFactory, AuthService, $state){
-
+app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFactory, AuthService){
+	//ToDo: Promise Handling of getShirt
 	ShirtFactory.getShirt($stateParams.id).then(fulfilled,rejected);
+	
+	// var test = {id:"12321",quantity:3,size:"L"};
+	// var items = [];
+	// items.push(test);
 
+	// $window.localStorage.cart = JSON.stringify(items);
 	if(!$window.localStorage.hasOwnProperty("cart")){
 		$window.localStorage.cart = JSON.stringify([]);
 	}
 	//JSON.parse to receive object from local storage
+	// 
 
 	$scope.addToCart = function(){
-		var shirtToAdd = ShirtFactory.formatShirt($scope.shirt);
-		
-		var currentCart = JSON.parse($window.localStorage.cart);
-		var copyExists = false;
-		
-		if(shirtToAdd.size && shirtToAdd.quantity){
-			currentCart.forEach(function(item){
-				if(item._id === shirtToAdd._id && item.size === shirtToAdd.size){
-					copyExists = true;
-					item.quantity =  parseInt(item.quantity) + parseInt(shirtToAdd.quantity);
-				}
-			});
-			if(!copyExists) currentCart.push(shirtToAdd);
-			$window.localStorage.cart = JSON.stringify(currentCart);
-			$state.go('cart');
-		}
+		// console.log($scope.shirt.size);
+		// console.log($scope.shirt.quantity);
+		// console.log('clicked');
+		// var items = {
+		// 	item:
+		// }
 
-	
-	};
+		// var parentProduct = {}
+		//$scope.shirt changed to parentProduct
+
+		var currentCart = JSON.parse($window.localStorage.cart);
+		currentCart.push($scope.shirt);
+
+		$window.localStorage.cart = JSON.stringify(currentCart);
+		// console.log($window.localStorage);
+	}
 
 	function fulfilled(shirt){ //shirt is actually response
-		$scope.shirt = shirt.product;
+		$scope.shirt = shirt.data.product;
 		$scope.size = null;
-		$scope.stock = shirt.product.stock;
-		$scope.reviews = shirt.reviews;
-		$scope.user = shirt.user;
+		$scope.stock = shirt.data.product.stock;
+		$scope.reviews = shirt.data.reviews;
+		$scope.user = shirt.data.user;
 		// console.log($scope.stock);
 
 

@@ -1,4 +1,4 @@
-<!-- Add Tshirt
+Add Tshirt
 See Shirt Sales
 Add Admins
 Change PW of any user
@@ -6,17 +6,54 @@ Create categories
 Order Management
 Review Management (Review)
 View Order Status
- -->
-<div class="row bg-info shirt-admin">
-    <div class="col-sm-12">
-        <strong>Admin options:</strong>
-        <button class="btn" ui-sref=".create-product">Create Shirt</button>
-        <button class="btn" ui-sref=".manage-users">Manage users</button>
-        <button class="btn" ui-sref=".manage-orders">Manage orders</button>
-    </div>
+
+<div class="row">
+	<button ui-sref="createProduct">Create Shirt</button>
+</div>
+<div class="row">
+	<h1>Registered users</h1>
+	<div class="col-xs-12" ng-repeat="user in users">
+		<div class="row registered-user-row">
+			<div class="col-xs-2">
+				<span>{{user.name}}</span> | 
+				<span>{{user.accountType}}</span>
+			</div> 
+			<div class="col-xs-2">
+				<button class="btn btn-primary" ng-click="toggleAccountType(user)">Toggle account type</button>
+			</div>
+		</div>
+	</div>
 </div>
 
-<div ui-view>
-    <h1>Welcome admin!</h1>
-    <p>Click one of the buttons above to manage to your heart's content.</p>
+<div class="row">
+	<h1>Orders</h1>
+	<h2>Order ID Date Total Cost Status</h2>
+	<div ng-repeat="order in orders">
+		<span ng-click="viewOrder(order['_id'])">{{order._id}}</span>
+		{{order.purchaseDate | date}}
+		{{order.totalCost}}
+		{{order.status}}
+		<div ng-if="activeOrderId == (order['_id'])">
+			<h3>Order #: {{currentOrder._id}}</h3>
+			<p>Purchase Date: {{currentOrder.purchaseDate | date}} </p>
+			<!-- <p>Order Status: {{currentOrder.status}} </p> -->
+			<form>
+				<select ng-model='currentOrder.statusUpdated'>
+				<!-- Created -> Processing, Processing -> Cancelled, Completed --> 
+					<option value="{{currentOrder.status}}"> -> {{currentOrder.status}}</option>
+					<option>Processing</option>
+					<option>Cancelled</option>
+					<option>Completed</option>
+				</select>
+				<button ng-click="updateStatus()">Update Status</button>
+			</form>
+			<p>Total Cost: {{currentOrder.totalCost}}</p>
+			<div ng-repeat="product in currentOrder.products">
+				<p>Items in Order: </p>
+				<img ng-src="{{product.product.imageUrl}}"/>
+				<p>Item Name:{{product.product.name}}</p>
+				<p>Quantity:{{product.quantity}}</p>
+				<p>Price:{{product.product.price}}</p>
+		</div>
+	</div>
 </div>

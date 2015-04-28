@@ -15,8 +15,8 @@
 	<!-- the non-edit view state -->
 	<div ng-if="!edit" class="col-sm-6">
 		<div>
-			<h1>{{ shirt.name }}</h1>
-			<p>{{ shirt.description}}</p>
+			<h1>Name: {{ shirt.name }}</h1>
+			<p>Description: {{ shirt.description}}</p>
 			<p>Stock: </p>
 			<p ng-repeat='stock in shirt.stock'>{{stock.size}}: {{stock.quantity}} </p>
 			<p>Price: {{shirt.price}}</p>

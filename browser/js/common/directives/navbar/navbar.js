@@ -8,7 +8,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         link: function (scope) {
 
             scope.standardItems = [
-                { label: 'Shirts', state: 'home' }
+                { label: 'Home', state: 'home' }
             ];
             scope.loggedOutItems = [
                 { label: 'Create Account', state: 'createAccount'},
