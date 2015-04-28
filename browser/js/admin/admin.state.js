@@ -12,12 +12,12 @@ app.config(function ($stateProvider){
 			templateUrl: 'js/product/add-product.html'
 		})
 		.state('admin.manage-users', {
-			controller: "addProductController",
+			controller: "AdminController",
 			url:'/admin/manage-users',
 			templateUrl: 'js/admin/manage-users/manage-users.html'
 		})
 		.state('admin.manage-orders', {
-			controller: "addProductController",
+			controller: "AdminController",
 			url:'/admin/manage-orders',
 			templateUrl: '/js/admin/manage-orders/manage-orders.html'
 		});
