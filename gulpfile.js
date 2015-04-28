@@ -198,14 +198,14 @@ gulp.task('seedDB', function () {
                 return user;
             }),
             Order.findOne({purchaseDate: "2015-04-20"}).exec().then(function(order) {
-                order.products.push({quantity: 1, product:products[0]});
-                order.save();
-                return order;
+                // order.products.push({quantity: 1, product:products[0],price:products[0].price});
+                // order.save();
+                // return order;
             }),
             Order.findOne({purchaseDate: "2015-04-16"}).exec().then(function(order) {
-                order.products.push();
-                order.save();
-                return order;
+                // order.products.push({quantity: 1, product:products[1],price:products[1].price});
+                // order.save();
+                // return order;
             }),
             Product.findOne({name: "FSA T"}).exec().then(function(product) {
                 product.stock.push(stock[0]);

@@ -4,7 +4,7 @@ app.factory('reviewFactory',function($http){
 				// var product = {
 				// 	id:productId
 				// };
-				// console.log('yada yada', productId);
+				console.log('yada yada', productId);
 				return $http.get('api/products/'+productId+'/review');
 			},
 			postReview: function(productId,text,stars){
