@@ -1,13 +1,14 @@
 <span ng-repeat="item in cart.products track by $index">
 		{{item.name}} </br>
 		{{item.description}} </br>
-		{{item.price}} </br>
+		{{item.price/100 | currency}} </br>
 		{{item.size}} </br>
 		<span ng-if="!edit">{{item.quantity}}</span>
 		<input ng-if='edit' ng-model='item.quantity' value="{{item.quantity}}"></input> <button ng-click="editOrder(item.quantity, $index)">Edit quantity</button> </br>
+		<button ng-model='item' ng-click="removeItem(item)">Remove</button> <br/>
 
 	-------<br/>
 
 </span>
 
-<span>Total:{{total}}</span></br>
+<span>Total:{{total | currency}}</span></br>

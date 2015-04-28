@@ -28,7 +28,7 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		currentCart.push($scope.shirt);
 
 		$window.localStorage.cart = JSON.stringify(currentCart);
-		console.log($window.localStorage);
+		// console.log($window.localStorage);
 	}
 
 	function fulfilled(shirt){ //shirt is actually response
@@ -37,7 +37,7 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 		$scope.stock = shirt.data.product.stock;
 		$scope.reviews = shirt.data.reviews;
 		$scope.user = shirt.data.user;
-		console.log($scope.stock);
+		// console.log($scope.stock);
 
 
 		$scope.edit = false;

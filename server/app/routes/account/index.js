@@ -36,12 +36,22 @@ router.put('/edit', function(req, res, next) {
 });
 
 router.get('/', function(req,res,next){
+	var populatedArr = [];
+	var arrIndex = 0;
+	console.log(req.user.orders.length);
 
-		//TODO: test multiple orders
-	Order.find({_id: req.user.orders}).populate('products.product').exec().then(fulfilled, rejected);
+	
+	req.user.orders.forEach(function(order, index){
+		Order.findOne({_id: order}).populate('products.product').exec().then(fulfilled, rejected);	
+	});
+	
 
-	function fulfilled(orders){
-		res.status(200).json({user:req.user, orders:orders});
+	function fulfilled(order){
+		populatedArr.push(order);
+		arrIndex++;
+
+		if(arrIndex === req.user.orders.length)
+			res.status(200).json({user:req.user, orders:populatedArr});
 	}
 
 	function rejected(error){

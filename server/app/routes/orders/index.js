@@ -15,12 +15,17 @@ router.post('/',function(req,res,next){
 
 	console.log('req.body',req.body);
 
+	res.sendStatus(200);
+
 	Order.create(req.body).then(fulfilled, rejected);
 
 	function fulfilled(order){
+		if(req.user){
+			// console.log(order._id);
+			req.user.orders.push(order._id);
+			req.user.save();
+		}
 			res.sendStatus(200);
-	
-		console.log(order);
 	}
 	function rejected(error){
 		next(error);
