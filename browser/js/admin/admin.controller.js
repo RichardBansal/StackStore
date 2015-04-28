@@ -88,4 +88,13 @@ app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 		}
 	};
 
+	$scope.toggleProductVisibility = function(product) {
+		// TODO: needs a visibility property on the model
+		// TODO: Main shirts page needs to filter based on availabity
+		// TODO: Individual shirt URL routes need filters based on shirt availability
+		console.log(product.visible);
+
+		//$scope.product.visible = !product.visible;
+	};
+
 });

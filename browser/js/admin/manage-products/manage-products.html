@@ -16,10 +16,12 @@
 		<p><b>Category: </b>{{ product.category }}</p>
 		<p><b>Price: </b>{{ product.price }}</p>
 		<p><b>Stock: </b>{{ product.stock }}</p>
+		<p><b>Visible: </b>{{ product.visible }}</p>
+
 	</div>
 	<div class="col-sm-2">
 		<button class="btn btn-primary">Edit product</button>
-		<button class="btn btn-warning">Toggle visibility</button>
+		<button class="btn btn-warning" ng-click="toggleProductVisibility(product)">Toggle visibility</button>
 	</div>
 	<div class="col-sm-12">
 		<hr>

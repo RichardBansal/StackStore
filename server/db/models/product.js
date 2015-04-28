@@ -17,7 +17,8 @@ var schema = new mongoose.Schema({
 	price: {type: Number, required: true},
 	stock: [stockSchema],
 	category:[{type: String, required: true}],
-	reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}]
+	reviews: [{type: mongoose.Schema.Types.ObjectId, ref: "Review"}],
+	visible: {type: Boolean, default: true}
 });
 
 schema.methods.findReviews = function findReviews(){
