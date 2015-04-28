@@ -1,5 +1,5 @@
 <!--  -->
-<form>
+<form ng-hide="!custom">
 	<select ng-model='review.stars'>
 	<!-- Created -> Processing, Processing -> Cancelled, Completed --> 
 		<option> 0 </option>
@@ -12,3 +12,6 @@
 	<input type="text" ng-model='review.text'/>
 	<button ng-click="saveReview()">Leave a Review</button>
 </form>
+<span ng-hide="custom">
+	{{review.starts}} | {{review.text}}
+</span>
