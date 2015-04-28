@@ -12,6 +12,10 @@ img {
 	padding-left: 0;
 }
 
+.registered-user-row {
+  padding-bottom: 15px;
+}
+
 @mixin clearfix {
   &:after {
     content: "";
