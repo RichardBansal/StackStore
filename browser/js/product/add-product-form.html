@@ -1,16 +1,41 @@
-<form novalidate class="create-account-form">
-    Name: <input type="text" ng-model="product.name" /><br>
-    Description: <textarea type="text" ng-model="product.description" /></textarea><br>
-    Image URL: <input type="text" ng-model="product.imageUrl" /><br>
-    Price: <input type="Number" ng-model="product.price" /><br>
-    Stock:
-    	XS: <input type="Number" ng-model="product.stock[0].quantity" />
-    	S:  <input type="Number" ng-model="product.stock[1].quantity" />
-    	M:  <input type="Number" ng-model="product.stock[2].quantity" />
-    	L:  <input type="Number" ng-model="product.stock[3].quantity" />
-    	XL: <input type="Number" ng-model="product.stock[4].quantity" />
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Add a new shirt</h1>
+    </div>
+    <div class="col-sm-8">
+        <form novalidate class="create-account-form">
+            <label for="product-name">Name</label>
+            <input id="product-name" class="form-control" type="text" ng-model="product.name" />
 
-    Categories: <input type="text" ng-model="product.category" /><br>
-    <input type="button" ng-click="" value="Reset" />
-    <input type="submit" ng-click="createProduct()" value="Save" />
-</form>
+            <label for="product-description">Description</label>
+            <textarea id="product-description" class="form-control" type="text" ng-model="product.description" /></textarea>
+            
+            <label for="product-image-url">Image URL</label> 
+            <input id="product-image-url" class="form-control" type="text" ng-model="product.imageUrl" />
+            
+            <label for="product-price">Price</label> 
+            <input id="product-price" class="form-control" type="Number" ng-model="product.price" />
+            
+            <label for="product-category">Categories: 
+            <input id="product-category" class="form-control" type="text" ng-model="product.category" /><br>
+            
+            <h2>Stock</h2>
+            <div class="form-inline">
+                <label for="stock-xs">XS</label> 
+                <input id="stock-xs" class="form-control size-input" type="Number" ng-model="product.stock[0].quantity" />
+                <label for="stock-s">S</label> 
+                <input id="stock-s" class="form-control size-input" type="Number" ng-model="product.stock[1].quantity" />
+                <label for="stock-m">M</label> 
+                <input id="stock-m" class="form-control size-input" type="Number" ng-model="product.stock[2].quantity" />
+                <label for="stock-l">L</label> 
+                <input id="stock-l" class="form-control size-input" type="Number" ng-model="product.stock[3].quantity" />
+                <label for="stock-xl">XL</label>
+                <input id="stock-xl" class="form-control size-input" type="Number" ng-model="product.stock[4].quantity" />
+            </div>
+
+            
+            <input class="btn btn-danger" type="button" ng-click="" value="Reset" />
+            <input class="btn btn-primary" type="submit" ng-click="createProduct()" value="Save" />
+        </form>
+    </div>
+</div>

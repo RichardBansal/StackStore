@@ -10,74 +10,10 @@ View Order Status
 <div class="row bg-info shirt-admin">
 	<div class="col-sm-12">
 		<strong>Admin options:</strong>
-		<button class="btn" ui-sref="createProduct">Create Shirt</button>
+		<button class="btn" ui-sref=".create-product">Create Shirt</button>
+		<button class="btn" ui-sref=".manage-users">Manage users</button>
+		<button class="btn" ui-sref=".manage-orders">Manage orders</button>
 	</div>
 </div>
 
-
-<div class="row">
-	<div class="col-xs-12">
-		<h1>Registered users</h1>
-	</div>
-	<div class="col-xs-12" ng-repeat="user in users">
-		<div class="row registered-user-row">
-			<div class="col-xs-2">
-				<span>{{user.name}}</span> | 
-				<span>{{user.accountType}}</span>
-			</div> 
-			<div class="col-xs-2">
-				<button class="btn btn-primary" ng-click="toggleAccountType(user)">Toggle account type</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-12">
-		<h1>Orders</h1>
-	</div>
-	<div class="col-sm-3">
-		<h2>Order ID</h2>
-	</div>
-	<div class="col-sm-3">
-		<h2>Date</h2>
-	</div>
-	<div class="col-sm-3">
-		<h2>Total</h2>
-	</div>
-	<div class="col-sm-3">
-		<h2>Status</h2>
-	</div>
-</div>
-
-<div class="row" ng-repeat="order in orders">
-	<div ng-click="viewOrder(order['_id'])">
-		<div class="col-sm-3">{{order._id}}</div>
-		<div class="col-sm-3">{{order.purchaseDate | date}}</div>
-		<div class="col-sm-3">{{order.totalCost}}</div>
-		<div class="col-sm-3">{{order.status}}</div>
-	</div>
-
-	<div class="col-sm-12" ng-if="activeOrderId == (order['_id'])">
-		<h3>Order #: {{currentOrder._id}}</h3>
-		<p>Purchase Date: {{currentOrder.purchaseDate | date}} </p>
-		<!-- <p>Order Status: {{currentOrder.status}} </p> -->
-		<form>
-			<select ng-model='currentOrder.statusUpdated'>
-			<!-- Created -> Processing, Processing -> Cancelled, Completed --> 
-				<option value="{{currentOrder.status}}"> -> {{currentOrder.status}}</option>
-				<option>Processing</option>
-				<option>Cancelled</option>
-				<option>Completed</option>
-			</select>
-			<button ng-click="updateStatus()">Update Status</button>
-		</form>
-		<p>Total Cost: {{currentOrder.totalCost}}</p>
-		<div ng-repeat="product in currentOrder.products">
-			<p>Items in Order: </p>
-			<img ng-src="{{product.product.imageUrl}}"/>
-			<p>Item Name:{{product.product.name}}</p>
-			<p>Quantity:{{product.quantity}}</p>
-			<p>Price:{{product.product.price}}</p>
-	</div>
-</div>
+<div ui-view></div>
