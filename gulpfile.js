@@ -17,6 +17,7 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 var karma = require('karma').server;
 var q = require('q');
+var seedShirt = require('./seedShirts.js');
 
 // Development tasks
 // --------------------------------------------------------------
@@ -65,6 +66,10 @@ gulp.task('buildCSS', function () {
         .pipe(sass())
         .pipe(rename('style.css'))
         .pipe(gulp.dest('./public'));
+});
+
+gulp.task('seedShirtDB', function () {
+    seedShirt();
 });
 
 gulp.task('seedDB', function () {

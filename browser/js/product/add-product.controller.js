@@ -15,7 +15,7 @@ app.controller("addProductController", function($scope, ShirtFactory){
 
 	};
 	$scope.createProduct=function(){
-		//console.log($scope.product);
+		console.log($scope.product);
 		ShirtFactory.createShirt($scope.product).then(fulfilled, rejected);
 			function fulfilled(product){
 				console.log(product);

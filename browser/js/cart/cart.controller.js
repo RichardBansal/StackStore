@@ -1,8 +1,11 @@
-app.controller('CartController', function($scope, $window, CartFactory, $q){
+app.controller('CartController', function($scope, $window, CartFactory, $q, $state){
 	$scope.cart = {};
+	$scope.total = 0;
 	var currentCart = JSON.parse($window.localStorage.cart);
 
-	$q.all(CartFactory.getCurrentPrice(currentCart)).then(latestPrices);
+	if(currentCart.length > 0){
+		$q.all(CartFactory.getCurrentPrice(currentCart)).then(latestPrices);
+	}
 
 
 	function latestPrices(prices){
@@ -18,13 +21,15 @@ app.controller('CartController', function($scope, $window, CartFactory, $q){
 	}
 
 	$scope.completeOrder = function(){
-		console.log('cart',$scope.cart);
-		CartFactory.completeOrder($scope.cart, $scope.total).then(fulfilled, rejected)
+		console.log($scope.cart);
+		if($scope.cart.products.length > 0){
+			CartFactory.completeOrder($scope.cart, $scope.total).then(fulfilled, rejected);
+		}
 
 		function fulfilled(response){
 			if(response) {
-				console.log('order made');
 				$window.localStorage.cart = JSON.stringify([]);
+				$state.go('confirmation');
 			}
 			else {
 				console.log('failure');

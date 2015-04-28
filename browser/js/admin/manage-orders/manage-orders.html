@@ -1,0 +1,54 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1>Orders</h1>
+	</div>
+	<div class="col-sm-2">
+		<h2>Order ID</h2>
+	</div>
+	<div class="col-sm-2">
+		<h2>Date</h2>
+	</div>
+	<div class="col-sm-2">
+		<h2>Total</h2>
+	</div>
+	<div class="col-sm-2">
+		<h2>Status</h2>
+	</div>
+	<div class="col-sm-4">
+		<h2>Order view</h2>
+	</div>
+</div>
+
+<div class="row" ng-repeat="order in orders">
+	<div ng-click="viewOrder(order['_id'])">
+		<div class="col-sm-2 scrollit">{{order._id}}</div>
+		<div class="col-sm-2 scrollit">{{order.purchaseDate | date}}</div>
+		<div class="col-sm-2 scrollit">{{order.totalCost}}</div>
+		<div class="col-sm-2 scrollit">{{order.status}}</div>
+
+		<div class="col-sm-4 fixed" ng-if="activeOrderId == (order['_id'])">
+			<p><b>Order #: </b>{{currentOrder._id}}</p>
+			<p><b>Purchase Date: </b>{{currentOrder.purchaseDate | date}}</p>
+
+			<form class="form-inline">
+				<label for="product-status">Product status:</label>
+				<select id="product-status" class="form-control" ng-model='currentOrder.statusUpdated'>
+					<option value="{{currentOrder.status}}"> -> {{currentOrder.status}}</option>
+					<option>Processing</option>
+					<option>Cancelled</option>
+					<option>Completed</option>
+				</select>
+				<button class="btn btn-sm btn-primary" ng-click="updateStatus()">Update Status</button>
+			</form>
+
+			<p><b>Total Cost: </b>{{currentOrder.totalCost}}</p>
+			<div ng-repeat="product in currentOrder.products">
+				<h3>Items in Order</h3>
+				<img ng-src="{{product.product.imageUrl}}"/>
+				<p><b>Item Name: </b>{{product.product.name}}</p>
+				<p><b>Quantity: </b>{{product.quantity}}</p>
+				<p><b>Price: </b>{{product.product.price}}</p>			
+			</div>
+		</div>
+	</div>
+</div>

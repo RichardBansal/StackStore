@@ -10,12 +10,6 @@ var stockSchema = new mongoose.Schema({
 	
 });
 
-var stockSchema = new mongoose.Schema({
-	size: { type: String, required: true, enum: ['XS', 'S', 'M', 'L', 'XL']},
-	quantity: { type: Number, required: true }
-	
-});
-
 var schema = new mongoose.Schema({
 	name: {type: String, required: true, unique: true},
 	description: {type: String, required: true},
@@ -27,7 +21,6 @@ var schema = new mongoose.Schema({
 });
 
 schema.methods.findReviews = function findReviews(){
-	// console.log('this',this);
 	var product = this;
 
 	var reviewFindsPromiseArr = [];
@@ -39,22 +32,8 @@ schema.methods.findReviews = function findReviews(){
 			);
 	});
 	return reviewFindsPromiseArr;
-	//return promise to return all reviews data
 };
 
-//find product
-	//get reviews
-		//get user
-// responseObject =
-// 					{
-// 						product:product,
-// 						reviews:[
-// 									{
-// 										reviews:reviews,
-// 										user:user
-// 									}
-// 								]
-// 					};
 
 schema.methods.saveAsync = function () {
     return q.ninvoke(this,'save');
