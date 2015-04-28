@@ -1,4 +1,4 @@
-app.controller('CartController', function($scope, $window, CartFactory, $q){
+app.controller('CartController', function($scope, $window, CartFactory, $q, $state){
 	$scope.cart = {};
 	var currentCart = JSON.parse($window.localStorage.cart);
 
@@ -19,12 +19,12 @@ app.controller('CartController', function($scope, $window, CartFactory, $q){
 
 	$scope.completeOrder = function(){
 		console.log('cart',$scope.cart);
-		CartFactory.completeOrder($scope.cart, $scope.total).then(fulfilled, rejected)
+		CartFactory.completeOrder($scope.cart, $scope.total).then(fulfilled, rejected);
 
 		function fulfilled(response){
 			if(response) {
-				console.log('order made');
 				$window.localStorage.cart = JSON.stringify([]);
+				$state.go('confirmation');
 			}
 			else {
 				console.log('failure');
