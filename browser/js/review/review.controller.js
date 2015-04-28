@@ -1,25 +1,9 @@
 app.controller('reviewController',function($scope, reviewFactory){
-	// console.log('controller loaded');
+	console.log('controller loaded');
 	// $scope.review = false;
-	// console.log('test',$scope.product);
-	$scope.custom = false;
-	reviewFactory.getReview($scope.product).then(foundReview)	
-
-	//check if an review alredady exists before creating a form to input
-	function foundReview(review){
-		// console.log('review123',review);
-		$scope.review = {};
-		if(review){
-			// console.log(review);
-			$scope.review.text = review.data.text
-			$scope.review.stars = review.data.stars
-			$scope.custom = true;
-		} else {
-			$scope.review.text = "";
-			$scope.review.stars = 0;
-			$scope.custom = false;
-		}
-	}
+	$scope.review = {};
+	$scope.review.text = "";
+	$scope.review.stars = 0;
 	
 	$scope.saveReview = function(){		
 		// console.log('clicked');
@@ -29,13 +13,7 @@ app.controller('reviewController',function($scope, reviewFactory){
 			.then(fulfilled);
 
 		function fulfilled(response){
-			// console.log('review created', response);
-			// $scope.showForm = false;
-			$scope.toggleCustom();
+			console.log('review created', response);
 		}
 	};
-
-    $scope.toggleCustom = function() {
-        $scope.custom = $scope.custom === false ? true: false;
-    };
 });

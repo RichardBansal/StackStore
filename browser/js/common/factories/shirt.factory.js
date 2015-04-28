@@ -18,7 +18,7 @@ app.factory('ShirtFactory', function($http){
 			function fulfilled(shirt){
 				// console.log('shirt+reviews',shirt);
 				console.log(shirt);
-				return shirt.data;
+				return shirt;
 			}
 
 			function rejected(error){
@@ -58,16 +58,6 @@ app.factory('ShirtFactory', function($http){
 
 			});
 
-		},
-
-		formatShirt: function(shirt){
-			return {
-				_id: shirt._id,
-				size: shirt.size,
-				name: shirt.name,
-				quantity: shirt.quantity,
-				description: shirt.description
-			};
 		}
 	};
 });

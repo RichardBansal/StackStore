@@ -4,10 +4,10 @@
 			<img ng-src="{{shirt.imageUrl}}"/>
 		</div>
 		<div class="col-sm-7 no-left-padding">
-			<h1 ui-sref="shirt({ id: shirt._id })" class="text-left">{{shirt.name}}</h1>
-			<p>{{shirt.description}}</p>
-			<p>Price: {{shirt.price/100 | currency}}</p>
-			<p>
+			<h1 ui-sref="shirt({ id: shirt._id })" class="text-left">Name: {{shirt.name}}</h1>
+			<p>Description: {{shirt.description}}</p>
+			<p>Price: {{shirt.price}}</p>
+			<p>Categories: 
 				<span ng-repeat='category in shirt.category' ng-click='getShirts(category)'>
 					{{category}}
 				</span>

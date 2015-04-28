@@ -1,18 +1,14 @@
 <span ng-repeat="item in cart.products track by $index">
-		<h4>Item Name:  {{item.name}}</h4>
-		<h5>Decription:  {{item.description}}</h5>
-		<h5>Unit Price:  {{item.price/100 | currency}}</h5>
-		<h5>Size:  {{item.size}}</h5>
-		<h5>Subtotal:  {{item.price*item.quantity/100 | currency}}</h5>
-		<span ng-if="!edit">Quantity:  {{item.quantity}}  </span>
+		{{item.name}} </br>
+		{{item.description}} </br>
+		{{item.price/100 | currency}} </br>
+		{{item.size}} </br>
+		<span ng-if="!edit">{{item.quantity}}</span>
 		<input ng-if='edit' ng-model='item.quantity' value="{{item.quantity}}"></input> <button ng-click="editOrder(item.quantity, $index)">Edit quantity</button> </br>
 		<button ng-model='item' ng-click="removeItem(item)">Remove</button> <br/>
 
 	-------<br/>
+
 </span>
 
-<span ng-hide="total === 0">Total:{{total | currency}}</span></br>
-<div ng-show="total === 0">
-	<span>Your shopping cart is empty.</span>
-	<img ng-src="http://media1.giphy.com/media/EdW1pjRlyMTCM/giphy.gif" />
-</div>
+<span>Total:{{total | currency}}</span></br>

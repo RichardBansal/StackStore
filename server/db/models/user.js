@@ -38,12 +38,10 @@ var UserSchema = new mongoose.Schema({
         unique: true
     },
     password: {
-        type: String,
-        // select: false
+        type: String
     },
     salt: {
-        type: String,
-        // select: false
+        type: String
     },
     twitter: {
         id: String,
