@@ -1,10 +1,10 @@
 <span ng-repeat="item in cart.products track by $index">
-		Item Name:{{item.name}} </br>
-		Decription:{{item.description}} </br>
-		Unit Price:{{item.price/100 | currency}} </br>
-		Size:{{item.size}} </br>
-		Subtotal:{{item.price*item.quantity/100}}</br>
-		<span ng-if="!edit">Quantity:{{item.quantity}}</span>
+		<h4>Item Name:  {{item.name}}</h4>
+		<h5>Decription:  {{item.description}}</h5>
+		<h5>Unit Price:  {{item.price/100 | currency}}</h5>
+		<h5>Size:  {{item.size}}</h5>""
+		<h5>Subtotal:  {{item.price*item.quantity/100 | currency}}</h5>
+		<span ng-if="!edit">Quantity:  {{item.quantity}}  </span>
 		<input ng-if='edit' ng-model='item.quantity' value="{{item.quantity}}"></input> <button ng-click="editOrder(item.quantity, $index)">Edit quantity</button> </br>
 		<button ng-model='item' ng-click="removeItem(item)">Remove</button> <br/>
 
