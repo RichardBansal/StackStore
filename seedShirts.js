@@ -32,7 +32,7 @@ var products = [
         description: "Zena Styling.",
         price: 7999,
         category: ["School shirts", "Tshirts"],
-        imageUrl: "https://lh5.googleusercontent.com/tkXm8nOuF_EsmPENMKfOUInLWqS392ae4HFXJSVHl_R2oY0QshhJIJsjMeV2ph8Vs0GlkQ=w1137-h513",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/11Feog5PTumNnq.gif",
         stock: generateStock()
     },
     {
@@ -40,7 +40,7 @@ var products = [
         description: "The Office.",
         price: 3799,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh6.googleusercontent.com/2oM4-caD9-aHhMkTrXfbJxGE64IajR-XLtaMP8q5k0ncdFsLvxR2w1FBygDv4UKh4JvJkw=w1137-h513",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/12XMGIWtrHBl5e.gif",
         stock: generateStock()
     },
     {
@@ -48,7 +48,7 @@ var products = [
         description: "Mission Impossible...What?",
         price: 3409,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh5.googleusercontent.com/yD6PQPZc0mKaR6LxyoAayvJG4jYm7fwMnOUTO1C47yKj_Rh9LZ7gMQsBvs4GF7zBc4ew6w=w1137-h440",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/3o85xky3bBsb8fysZG.gif",
         stock: generateStock()
     },
     {
@@ -56,7 +56,7 @@ var products = [
         description: "...?",
         price: 3099,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh6.googleusercontent.com/48kRwQGkHRFsUS1RDaea5t4YRccYAU9-rXy2YDYz6UM2i93ohmVY8c3SG1oSYmOZPOLWHQ=w1137-h440",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/3oEduSjq9BxP0ysJwc.gif",
         stock: generateStock()
     },
     {
@@ -64,7 +64,7 @@ var products = [
         description: "Yup.",
         price: 3199,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh5.googleusercontent.com/OdF6XwBiCo3Odjvm-j-SvLfb6TjwjeTJyLaDeW0-m4i51T-b44cqIOOCkuOJyt2IkSm0Zg=w1137-h440",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/3oEduULmVplmGtWNmE.gif",
         stock: generateStock()
     },
     {
@@ -72,7 +72,7 @@ var products = [
         description: "Selfy Giphy!",
         price: 2599,
         category: ["People shirts", "Tshirts"],
-        imageUrl: "https://lh4.googleusercontent.com/6DvHubuJCq8B0VvQ3o8-HPxFggx65VXQohrNG0aCq9gpYkUJLGn5DC4mh_eCqER_XhVERA=w1137-h440",
+        imageUrl: "http://storage.googleapis.com/1503stackstore/shirts/3oEdv7XWaqQNOG4xwY.gif",
         stock: generateStock()
     }];
 
