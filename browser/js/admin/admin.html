@@ -1,28 +1,22 @@
+<!-- Add Tshirt
+See Shirt Sales
+Add Admins
+Change PW of any user
+Create categories
+Order Management
+Review Management (Review)
+View Order Status
+ -->
 <div class="row bg-info shirt-admin">
-	<div class="col-sm-12">
-		<strong>Admin options:</strong>
-		<button class="btn" ui-sref=".create-product">Create Shirt</button>
-		<button class="btn" ui-sref=".manage-users">Manage users</button>
-		<button class="btn" ui-sref=".manage-orders">Manage orders</button>
-<div class="row">
-	<button ui-sref="createProduct">Create Shirt</button>
-</div>
-<div class="row">
-	<h1>Registered users</h1>
-	<div class="col-xs-12" ng-repeat="user in users">
-		<div class="row registered-user-row">
-			<div class="col-xs-2">
-				<span>{{user.name}}</span> | 
-				<span>{{user.accountType}}</span>
-			</div> 
-			<div class="col-xs-2">
-				<button class="btn btn-primary" ng-click="toggleAccountType(user)">Toggle account type</button>
-			</div>
-		</div>
-	</div>
+    <div class="col-sm-12">
+        <strong>Admin options:</strong>
+        <button class="btn" ui-sref=".create-product">Create Shirt</button>
+        <button class="btn" ui-sref=".manage-users">Manage users</button>
+        <button class="btn" ui-sref=".manage-orders">Manage orders</button>
+    </div>
 </div>
 
 <div ui-view>
-	<h1>Welcome admin!</h1>
-	<p>Click one of the buttons above to manage to your heart's content.</p>
+    <h1>Welcome admin!</h1>
+    <p>Click one of the buttons above to manage to your heart's content.</p>
 </div>
