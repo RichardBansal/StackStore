@@ -61,4 +61,13 @@ router.get('/', function(req,res,next){
 	
 });
 
+router.get('/all', function(req, res, next) {
+	console.log('ROUTE: /account/all');
+	User.find().exec()
+		.then(function(users) {
+			//console.log(users);
+			res.status(200).json(users);
+		});
+});
+
 module.exports = router;

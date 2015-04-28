@@ -1,6 +1,4 @@
-app.controller('AdminController', function($scope, AdminFactory){
-	AdminFactory.getOrders().then(fulfilled, rejected);
-
+app.controller('AdminController', function($scope, AdminFactory, UserFactory){
 	function fulfilled(orders){
 		// console.log(orders.data);
 		$scope.orders = orders.data;
@@ -8,6 +6,19 @@ app.controller('AdminController', function($scope, AdminFactory){
 	function rejected(err){
 		console.log(err);
 	}
+	AdminFactory.getOrders().then(fulfilled, rejected);
+
+
+	function userFulfilled(users){
+		console.log(users.data);
+		$scope.users = users.data;
+	}
+	function userRejected(err){
+		console.log(err);
+	}
+	UserFactory.listUsers().then(userFulfilled, userRejected);
+
+
 	// $scope.viewOrderClicked = false;
 	$scope.activeOrderId = false;
 	// $scope.showOrder = function(id){
@@ -28,7 +39,7 @@ app.controller('AdminController', function($scope, AdminFactory){
 			}
 		}
 		//
-	}
+	};
 
 	$scope.viewOrder = function(orderId){
 
@@ -43,5 +54,5 @@ app.controller('AdminController', function($scope, AdminFactory){
 
 			// console.log($scope.activeOrder === orderId);
 		}
-	}
+	};
 });
