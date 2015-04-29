@@ -33,6 +33,7 @@ schema.methods.findReviews = function findReviews(){
 	});
 	return reviewFindsPromiseArr;
 };
+schema.index({ name: 'text'});
 
 
 schema.methods.saveAsync = function () {
