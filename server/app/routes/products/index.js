@@ -19,6 +19,21 @@ router.get('/',function(req,res,next){
 	}
 });
 
+router.get('/search',function(req,res,next){
+	console.log("reqparams",req.query.term);
+	// var modelParams = req.query.category ? {category: req.query.category} : {};
+	Product.find({ $text : { $search : req.query.term } }).exec()
+		.then(fulfilled, rejected);
+
+	function fulfilled(products){
+		console.log("router shirts",products);
+		res.json(products).status(200);
+	}
+
+	function rejected(error){
+		next(error);
+	}
+});
 router.get("/:id/price",function(req,res,next){
 	console.log('hitting the right route, id',req.params.id);
 	

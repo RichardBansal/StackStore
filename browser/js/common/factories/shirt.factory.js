@@ -68,8 +68,23 @@ app.factory('ShirtFactory', function($http){
 				quantity: shirt.quantity,
 				description: shirt.description
 			};
+		},
+		getSearch: function(term){
+			console.log("found getsearch2 text", term);
+			return $http.get('/api/products/search',{params:{term:term}}).then(fulfilled,rejected);
+
+			function fulfilled(shirt){
+				// console.log('shirt+reviews',shirt);
+				//console.log(shirt);
+				return shirt.data;
+			}
+
+			function rejected(error){
+				console.log(error);
+			}
 		}
 	};
 });
+
 
 //instead of getShirts, we store the shirts for use by other modules

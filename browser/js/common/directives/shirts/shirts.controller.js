@@ -16,13 +16,13 @@ app.controller('ShirtsController', function($scope, ShirtFactory){
 	$scope.getShirts();
 	$scope.text="";
 	$scope.shirtSearch=function(){
-		//console.log($scope.text);
-		ShirtFactory.getSearch($scope.text).then(searchfullfilled, searchRejected);
+		console.log("controller $scope.text",$scope.text);
+		ShirtFactory.getSearch($scope.text).then(searchfulfilled, searchRejected);
 			function searchfulfilled(shirts){
 				$scope.shirts = shirts;
 			}
 
-			function searchrejected(error){
+			function searchRejected(error){
 				console.log(error);
 			}
 	};	
