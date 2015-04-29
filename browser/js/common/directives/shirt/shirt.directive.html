@@ -16,10 +16,9 @@
 	<div ng-if="!edit" class="col-sm-6">
 		<div>
 			<h1>{{ shirt.name }}</h1>
-			<p>{{ shirt.description}}</p>
 			<p>Stock: </p>
 			<p ng-repeat='stock in shirt.stock'>{{stock.size}}: {{stock.quantity}} </p>
-			<p>Price: {{shirt.price}}</p>
+			<p>Price: {{shirt.price/100 | currency}}</p>
 			<p>Categories: 
 				<span ng-repeat='category in shirt.category'>{{category}} </span>
 			</p>

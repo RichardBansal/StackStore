@@ -5,7 +5,6 @@
 		</div>
 		<div class="col-sm-7 no-left-padding">
 			<h1 ui-sref="shirt({ id: shirt._id })" class="text-left">{{shirt.name}}</h1>
-			<p>{{shirt.description}}</p>
 			<p>Price: {{shirt.price/100 | currency}}</p>
 			<p>
 				<span ng-repeat='category in shirt.category' ng-click='getShirts(category)'>

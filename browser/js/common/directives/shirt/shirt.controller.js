@@ -20,6 +20,7 @@ app.controller('ShirtController',function($scope, $window, $stateParams, ShirtFa
 					item.quantity =  parseInt(item.quantity) + parseInt(shirtToAdd.quantity);
 				}
 			});
+			
 			if(!copyExists) currentCart.push(shirtToAdd);
 			$window.localStorage.cart = JSON.stringify(currentCart);
 			$state.go('cart');

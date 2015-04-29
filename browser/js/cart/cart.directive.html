@@ -1,6 +1,5 @@
 <span ng-repeat="item in cart.products track by $index">
 		<h4>Item Name:  {{item.name}}</h4>
-		<h5>Decription:  {{item.description}}</h5>
 		<h5>Unit Price:  {{item.price/100 | currency}}</h5>
 		<h5>Size:  {{item.size}}</h5>
 		<h5>Subtotal:  {{item.price*item.quantity/100 | currency}}</h5>
